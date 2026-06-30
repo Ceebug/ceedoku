@@ -2281,12 +2281,19 @@ function loadGame() {
 
     paintBoard();
 
-    if (!timerPaused) {
-        startTimer();
-    } else {
-        timerEl.textContent =
-            `Time: ${formatTime(Math.floor(elapsedMs / 1000))}`;
-    }
+if (timerPaused) {
+    clearInterval(timerId);
+
+    pauseBtn.textContent = "▶";
+    title.textContent = "Sudoku - Paused";
+
+    timerEl.textContent =
+        `Time: ${formatTime(Math.floor(elapsedMs / 1000))}`;
+} else {
+    pauseBtn.textContent = "❚❚";
+    title.textContent = "Sudoku";
+
+    startTimer();
 }
 function newGame(nextDifficulty = difficulty) {
     difficulty = nextDifficulty;
@@ -2457,7 +2464,10 @@ winDifficultyMenu.addEventListener("click", (event) => {
                   selectCell(nextRow * 9 + nextCol);
                 }
               });    
-		
+		window.addEventListener("beforeunload", () => {
+			pausetimer();
+			saveGame();
+		});
         </script>
 
 
