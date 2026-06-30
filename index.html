@@ -1618,24 +1618,26 @@ function pauseTimer() {
     saveGame();
 }
 function pauseTimer() {
-    timerPaused = true;
+    if (!timerPaused) {
+        // PAUSE
+        timerPaused = true;
 
-    clearInterval(timerId);
+        clearInterval(timerId);
 
-    elapsedMs = Date.now() - startTime;
+        elapsedMs = Date.now() - startTime;
 
-    pauseBtn.textContent = "▶";
-    title.textContent = "Sudoku - Paused";
+        pauseBtn.textContent = "▶";
+        title.textContent = "Sudoku - Paused";
 
-    saveGame();
-
+        saveGame();
     } else {
+        // RESUME
+        timerPaused = false;
+
         startTimer();
 
         pauseBtn.textContent = "❚❚";
-
         title.textContent = "Sudoku";
-
     }
 }
         
