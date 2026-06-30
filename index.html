@@ -579,6 +579,23 @@ position: relative;
         rippleFade .35s ease
             var(--fade-delay,1000ms) forwards;
 }
+		#mode {
+    overflow: hidden;
+    height: 50px;
+}
+
+.mode-wheel {
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+
+.mode-wheel span {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 @keyframes columnGrow {
     0% {
         transform: scaleY(.15) scaleX(.9) rotate(0deg);
@@ -1332,7 +1349,12 @@ position: relative;
 
                 </div>
             </aside>
-<div style="display: flex;position: absolute;right: 20px;top: 20px;width: 120px;gap: 10px;"><button id="mode" class="hint-button" onclick="changemode()" style="justify-self: right;width: 50px;height: 50px;right: 20px;top: 20px;">☀<b>☾</b></button><button id="pause-btn" class="hint-button" onclick="pauseTimer()" style="justify-self: left;width: 50px;height: 50px;right: 20px;top: 20px;">❚❚</button>
+<div style="display: flex;position: absolute;right: 20px;top: 20px;width: 120px;gap: 10px;"><button id="mode" class="hint-button" onclick="changemode()" style="justify-self: right;width: 50px;height: 50px;right: 20px;top: 20px;"><button id="mode">
+    <span class="mode-wheel">
+        <span>☀</span>
+        <span><b>☾</b></span>
+    </span>
+</button></button><button id="pause-btn" class="hint-button" onclick="pauseTimer()" style="justify-self: left;width: 50px;height: 50px;right: 20px;top: 20px;">❚❚</button>
 </div>
         </main>
 <div id="winOverlay" class="win-overlay" style="border-radius: 66px;" hidden="">
@@ -1496,34 +1518,33 @@ position: relative;
               }
 			let pageMode = "dark";
 
-function changeMode() {
-    const modeButton = document.getElementById("mode");
+let pageMode = "dark";
 
-    // If currently light, switch back to dark immediately.
+function changeMode() {
+    const wheel = document.getElementById("modeWheel");
+
     if (pageMode === "light") {
         document.body.className = "dark";
         pageMode = "dark";
-        if (modeButton) modeButton.innerHTML = "☀";
+        wheel.style.transform = "translateY(0)";
         return;
     }
 
-    // Otherwise switch to light.
     document.body.className = "light";
     pageMode = "light";
-    if (modeButton) modeButton.innerHTML = "<b>☾</b>";
+    wheel.style.transform = "translateY(-50px)";
 
-    // Switch back to dark once the page has finished loading.
     if (document.readyState === "complete") {
         document.body.className = "dark";
         pageMode = "dark";
-        if (modeButton) modeButton.innerHTML = "☀";
+        wheel.style.transform = "translateY(0)";
     } else {
         window.addEventListener("load", function restoreDark() {
             window.removeEventListener("load", restoreDark);
 
             document.body.className = "dark";
             pageMode = "dark";
-            if (modeButton) modeButton.innerHTML = "☀";
+            wheel.style.transform = "translateY(0)";
         });
     }
 }
