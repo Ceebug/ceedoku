@@ -1,4 +1,4 @@
-![Big text that says ceedoku](./title.png)
+![CEEDOKU](./title.png)
 ## An ad-free Sudoku game made by [@Ceebug](https://github.com/Ceebug)</h2>
 
 ### **Features:**
