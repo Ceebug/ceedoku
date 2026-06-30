@@ -1485,28 +1485,16 @@ position: relative;
 function changemode() {
 	console.log("changemode function called");
     if (pageMode === "light") {
+		console.log("changemode(): The page was light, switching to dark");
         document.body.className = "dark";
         pageMode = "dark";
         if (modeButton) modeButton.innerHTML = "☀";
         return;
     }
-
+	console.log("changemode(): The page was dark, switching to light");
     document.body.className = "light";
     pageMode = "light";
-    if (modeButton) modeButton.innerHTML = "<b>☾</b>";
-    if (document.readyState === "complete") {
-        document.body.className = "dark";
-        pageMode = "dark";
-        if (modeButton) modeButton.innerHTML = "☀";
-    } else {
-        window.addEventListener("load", function restoreDark() {
-            window.removeEventListener("load", restoreDark);
-
-            document.body.className = "dark";
-            pageMode = "dark";
-            if (modeButton) modeButton.innerHTML = "☀";
-        });
-    }
+	if (modeButton) modeButton.innerHTML = "<b>☾</b>";
 }
         function hideWinScreen() {
             winOverlay.classList.remove("show");
