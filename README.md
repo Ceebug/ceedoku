@@ -9,8 +9,10 @@
 - **Multiple difficulties**
 - **Game Saving**
 - **Theme preference saving**
-- **Hint Button**
+- **Hints** (These will be improved upon, currently they use a system of just restoring the board so solve using info the player doesn't have)
 - **Timer**
+- **Pencil mode**
+- **Erase mode**
 
 **Find the game here: [Ceedoku.github.io](https://ceedoku.github.io)** <br>
 **Also on this page: [Ceebug.github.io/Ceedoku/](https://ceebug.github.io/ceedoku)**
