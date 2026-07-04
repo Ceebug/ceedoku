@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sudoku-cache-v1';
+const CACHE_NAME = 'sudoku-cache-v2';
 // The exact local files you want your phone to save offline
 const ASSETS_TO_CACHE = [
   './',
