@@ -12,6 +12,3 @@
 - **Erase mode**
 - **Save games**
 - **Theme preference saving**
-
-**Find the game here: [Ceedoku.github.io](https://ceedoku.github.io)** <br>
-**Also on this page: [Ceebug.github.io/Ceedoku/](https://ceebug.github.io/ceedoku)**
