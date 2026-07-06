@@ -6,7 +6,7 @@
 - **Auto Soduku generation**
 - **Works offline** (As long as you have opened the installed version at least once before with internet)
 - **Multiple difficulties**
-- **Hints** (These will be improved upon, currently they use a system of just restoring the board so solve using info the player doesn't have)
+- **Hints**
 - **Timer**
 - **Pencil mode**
 - **Erase mode**
