@@ -87,7 +87,6 @@ a:active {
     
         body {
           margin: 0;
-          min-height: 100%;
           background:
             radial-gradient(circle at 15% 15%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 30%),
             linear-gradient(135deg, var(--bg), color-mix(in srgb, var(--surface-2) 40%, var(--bg)));
@@ -95,6 +94,7 @@ a:active {
           display: grid;
           place-items: center;
           letter-spacing: 0;
+		  padding-bottom: 5px !important
         }
 html {
     min-height: 100%;
@@ -126,11 +126,7 @@ input[type="submit"] {
     }
     .card {
 	padding-top: 0px !important;
-    }
-    body {
-    	min-height: 100vh;
-    	background: transparent;
-    }    
+    } 
     .why {
 	margin-top: 15px !important
     }
@@ -138,7 +134,7 @@ input[type="submit"] {
 		height: 12dvh
 	}
     .whatamidoingwithmylife {
-		height: fit-content !important
+		height: fit-content !important;
 		flex-direction: column
 	}
 }
