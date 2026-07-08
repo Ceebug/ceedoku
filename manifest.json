@@ -1,6 +1,6 @@
 {
-  "short_name": "Sudoku",
-  "name": "Sudoku",
+  "short_name": "Ceedoku",
+  "name": "Ceedoku",
   "icons": [
     {
       "src": "./icon512.png",
@@ -18,6 +18,6 @@
   "start_url": "./index.html",
   "background_color": "#101418",
   "theme_color": "#101418",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait"
 }
