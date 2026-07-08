@@ -73,10 +73,39 @@ font-size: clamp(1.20rem, 5vw, 2.5rem)
         align-items: center;
             transform: translateY(110vh);
     
-        opacity: 0;
+        opacity: 1;
         pointer-events: none;
     transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
                 opacity 0ms ease;
+    
+        z-index: 5000;
+    }
+	    .win-overlay.transitions {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+            transform: translateY(110vh);
+    
+        opacity: 1;
+        pointer-events: none;
+    transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0ms ease;
+    
+        z-index: 5000;
+    }
+    
+	    .win-overlay2 {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+            transform: translateY(110vh);
+    
+        opacity: 1;
+        pointer-events: none;
     
         z-index: 5000;
     }
@@ -86,7 +115,12 @@ font-size: clamp(1.20rem, 5vw, 2.5rem)
         pointer-events: auto;
         position: fixed;
         transform: translateY(-1vh);
-
+    }
+    .win-overlay2.show {
+        opacity: 1;
+        pointer-events: auto;
+        position: fixed;
+        transform: translateY(-1vh);
     }
     
     .win-card {
@@ -496,7 +530,11 @@ position: relative;
           background: var(--surface);
           color: var(--text);
         }
-    
+		.urgh {
+			right: 25%;
+			width: 50vw;
+			top: 100%
+		}
         .cell.completed.selected {
           background: var(--surface);
         }
@@ -759,7 +797,9 @@ position: relative;
             transform: scale(1);
           }
         }
-    
+		.cmon {
+			transform: translatey(-40px)
+		}
         .status-line {
           display: flex;
           justify-content: space-between;
@@ -851,6 +891,7 @@ position: relative;
         .pencil-button,
         .new-main,
         .new-side,
+		.new-main2,
         .number-button,
         .erase-button,
         .menu-item {
@@ -864,6 +905,7 @@ position: relative;
         .pencil-button:hover,
         .new-main:hover,
         .new-side:hover,
+		.new-main2:hover,
         .number-button:hover,
         .erase-button:hover,
         .menu-item:hover,
@@ -872,11 +914,15 @@ position: relative;
           background: color-mix(in srgb, var(--blue-soft) 65%, var(--surface-2));
 	  color: var(--muted);
         }
-    
+    		.menu-item[aria-selected=true]:hover,
+			    		.menu-item[aria-selected=true]:active {
+          background: color-mix(in srgb, var(--blue-soft) 65%, var(--surface-2));		
+}		  
         .hint-button:active,
         .pencil-button:active,
         .new-main:active,
         .new-side:active,
+		.new-main2:active,
         .number-button:active,
         .erase-button:active,
         .menu-item:active,
@@ -921,10 +967,14 @@ position: relative;
         }
     
         .history-button:disabled {
-          cursor: default;
+          cursor: not-allowed;
           opacity: .38;
         }
-    
+		.new-main2.disabled {
+		  cursor: not-allowed;
+		  background: color-mix(in srgb, var(--surface-2) 55%, transparent) !important;
+		  color: var(--muted);
+		}
         .history-button svg,
         .new-side svg,
         .pencil-button svg {
@@ -985,6 +1035,16 @@ position: relative;
           font-weight: 850;
           border-radius:
         }
+		        .new-main2 {
+          border-top-right-radius: 999px;
+          border-bottom-right-radius: 999px;
+          min-height: 58px;
+          background: var(--blue);
+          color: #fff;
+          font-size: 1.02rem;
+          font-weight: 850;
+          border-radius:
+        }
     
         .new-side {
           border-top-left-radius: 0;
@@ -996,7 +1056,10 @@ position: relative;
           place-items: center;
           border-left: 1px solid rgba(255, 255, 255, .24);
         }
-    
+		.urgh {
+		  width: 100% !important;
+		  right: -0.2% !important;
+		}
         .difficulty-menu {
           position: absolute;
           z-index: 5;
@@ -1042,9 +1105,12 @@ position: relative;
     
         .menu-item[aria-selected="true"] {
           color: var(--blue);
-          background: var(--blue-softer);
+          background: background: var(--surface-2);;
         }
-    
+    #timer {
+    cursor: default;
+    user-select: none;
+}
         .numbers-band {
           align-self: end;
           padding: 14px;
@@ -1199,6 +1265,7 @@ position: relative;
         .hint-button:active,
         .new-main:active,
         .new-side:active,
+		.new-main2:active,
         .number-button:active,
         .menu-item:active,
         .theme-toggle:active,
@@ -1217,6 +1284,7 @@ position: relative;
 				        .hint-button:hover,
         .new-main:hover,
         .new-side:hover,
+		.new-main2:hover,
         .number-button:hover,
         .menu-item:hover,
         .theme-toggle:hover,
@@ -1234,6 +1302,15 @@ position: relative;
 		.new-main:hover {
           border-top-right-radius: 0 !important;
           border-bottom-right-radius: 0 !important;
+          background: var(--blue);
+          color: #fff;
+          font-size: 1.02rem;
+          font-weight: 850;
+		  border-radius: var(--radius);
+		  }
+		 .new-main2:hover {
+          border-top-right-radius: 999px !important;
+          border-bottom-right-radius: 999px !important;
           background: var(--blue);
           color: #fff;
           font-size: 1.02rem;
@@ -1316,9 +1393,6 @@ transform: translatey(-5px)
 	.bar {
 	width: 45%
 	}
-	.cries {
-		width: 123% !important
-	}
 	#pause-btn {
 	width: 45% !important;
 	height: 42.75 !important;
@@ -1343,8 +1417,9 @@ transform: translatey(-5px)
 	}
 	.hint-button:active,
 .pencil-button:active:not([aria-pressed="true"]),
-.new-main:active,
 .new-side:active,
+.new-main:active,
+.new-main2:active,
 .number-button:active,
 .erase-button:active:not([aria-pressed="true"]),
 .menu-item:active,
@@ -1354,7 +1429,10 @@ transform: translatey(-5px)
     color: var(--muted);
     transform: translateY(1px);
     border-radius: 999px;
+	border-top-right-radius: 999px !important;
+	border-bottom-right-radius: 999px !important;
 }
+
 
 	button {
     -webkit-tap-highlight-color: transparent;
@@ -1406,6 +1484,9 @@ transform: translatey(-5px)
 	.game-shell {
 		height: fit-content !important
 	}
+	.cmon {
+		transform: translatey(0px);
+	}
 	.number-grid div {
 		flex: 0 0 calc(20% - 10px); 
 		box-sizing: border-box;
@@ -1422,6 +1503,12 @@ transform: translatey(-5px)
 		display: flex;
 		align-self: center
 	}	
+	.urgh {
+		right: -1%;
+		width: 90vw;
+		top: 120%;
+		box-shadow: none !important
+	}
 }
     </style>
 	<script>
@@ -1476,7 +1563,7 @@ transform: translatey(-5px)
                             </svg>
                         </button>
                     </div>
-                    <div class="control-card timer-wrap" id="timer">Time: 00:03</div>
+                    <div class="control-card timer-wrap" id="timer">Time: 00:00</div>
                     <div class="control-card history-wrap aah">
                         <div class="history-pill" aria-label="History controls">
                             <button class="history-button" id="undoButton" type="button" aria-label="Undo" title="Undo" disabled="">
@@ -1552,7 +1639,7 @@ transform: translatey(-5px)
 
                     
 <div class="win-stat" style="width: fit-content; margin: 33px auto; background-color: var(--surface-2); padding: 5px 20px; border-radius: 5px; scale: 1.3; box-shadow: 0 0 5px 5px  var(--shadow-color2); --darkreader-inline-bgcolor: var(--darkreader-bg--surface-2, var(--darkreader-background-ffffff, #181a1b));" data-darkreader-inline-bgcolor="">
-    <h2 style="text-align: left;width: fit-content;margin: 0 auto;margin-top: 5px;margin-bottom: 10px;"><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Difficulty: </strong><span id="winDifficulty" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Easy</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Time: </strong><span id="winTime" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">00:03</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Mistakes: </strong><span id="winMistakes" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">0</span></h2>
+    <h2 style="text-align: left;width: fit-content;margin: 0 auto;margin-top: 5px;margin-bottom: 10px;"><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Difficulty: </strong><span id="winDifficulty" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Easy</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Time: </strong><span id="winTime" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">00:00</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Mistakes: </strong><span id="winMistakes" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">0</span></h2>
     
 </div>
                     
@@ -1566,7 +1653,7 @@ transform: translatey(-5px)
 
                 </div></div>
 
-                <div class="new-game-band" id="winnewgameband" style="">
+                <div class="new-game-band" id="winnewgameband" style="margin-bottom: 5px;">
                     <button class="new-main" id="winNewGameButton" type="button">New Game</button>
                     <button class="new-side" id="winDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1580,7 +1667,7 @@ transform: translatey(-5px)
                         <button class="menu-item" type="button" data-difficulty="expert" role="option" aria-selected="false">Expert <span>58</span></button>
                     </div>
                 </div>
-
+				<button class="new-main2" onclick="showmainmenu()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">Main Menu</button>
             </div>
 
         </div>
@@ -1596,7 +1683,7 @@ transform: translatey(-5px)
 
                     
 <div class="win-stat" style="width: fit-content; margin: 33px auto; background-color: var(--surface-2); padding: 5px 20px; border-radius: 5px; scale: 1.3; box-shadow: 0 0 5px 5px  var(--shadow-color2); --darkreader-inline-bgcolor: var(--darkreader-bg--surface-2, var(--darkreader-background-ffffff, #181a1b));" data-darkreader-inline-bgcolor="">
-    <h2 style="text-align: left;width: fit-content;margin: 0 auto;margin-top: 5px;margin-bottom: 10px;"><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Difficulty: </strong><span id="pauseDifficulty" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Easy</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Paused at: </strong><span id="pauseTime" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">00:03</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Mistakes: </strong><span id="pauseMistakes" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">0</span></h2>
+    <h2 style="text-align: left;width: fit-content;margin: 0 auto;margin-top: 5px;margin-bottom: 10px;"><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Difficulty: </strong><span id="pauseDifficulty" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Easy</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Paused at: </strong><span id="pauseTime" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">00:00</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Mistakes: </strong><span id="pauseMistakes" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">0</span></h2>
     
 </div>
                     
@@ -1609,8 +1696,8 @@ transform: translatey(-5px)
                     
 
                 </div></div>
-		<button class="new-main" onclick="resumeTimer()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button>
-                <div class="new-game-band" id="pausenewgameband" style="">
+		<button class="new-main2" onclick="resumeTimer()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button>
+                <div class="new-game-band" id="pausenewgameband"  style="margin-bottom: 5px;">
                     <button class="new-main" id="pauseNewGameButton" type="button">New Game</button>
                     <button class="new-side" onclick="togglepauseDifficultyMenu()" id="pauseDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1624,34 +1711,35 @@ transform: translatey(-5px)
                         <button class="menu-item" type="button" data-difficulty="expert" role="option" aria-selected="false">Expert <span>58</span></button>
                     </div>
                 </div>
+				<button class="new-main2" onclick="showmainmenu()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">Main Menu</button>
 
             </div>
 
         </div>
 
      </div></div>   
-        <div id="mainmenu" style="height: 100dvh;position: absolute;width: 100dvw;background-color: var(--bg);display: flex;flex-direction: column;padding: 20px;justify-content: center;z-index: 4999;"><div style="display: flex;flex-direction: column;align-content: center;/*! justify-content: center; */"><img src="./title.png" alt="CEEDOKU"><div style="margin-top: 50px;/*! margin-left: 50px; *//*! margin-right: 50px; *//*! WIDTH: 100%; */"><button class="new-main" onclick="continueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button></div><div style="margin-top: 20px;/*! margin-left: 50px; *//*! margin-right: 50px; *//*! margin-bottom: 20px; */"><div class="new-game-band" id="mainnewgameband" style="">
+        <div id="mainmenu" class="win-overlay2" style="align-items: normal;height: 101dvh;position: absolute;width: 100dvw;background-color: var(--bg);display: flex;flex-direction: column;padding: 20px;justify-content: center;z-index: 4999;"><div class="cmon" style="display: flex;flex-direction: column;align-content: center;/*! justify-content: center; */"><img src="./title.png" alt="CEEDOKU"><div style="margin-top: 50px;/*! margin-left: 50px; *//*! margin-right: 50px; *//*! WIDTH: 100%; */"><button class="new-main2" id="igiveup" onclick="showcontinueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button></div><div style="margin-top: 20px;/*! margin-left: 50px; *//*! margin-right: 50px; *//*! margin-bottom: 20px; */"><button class="new-main2" onclick="openmainDifficultyMenu()" id="mainDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">New Game</button><div class="new-game-band" id="mainnewgameband" style="">
                     
-                    <button class="new-main cries" onclick="togglemainDifficultyMenu()" id="mainDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">New Game</button>
-                    <div class="difficulty-menu" id="maindifficultyMenu" role="listbox" aria-label="Difficulty">
-                        <button class="menu-item" type="button" data-difficulty="easy" role="option" aria-selected="true">Easy <span>36</span></button>
+                    
+                    <div class="difficulty-menu urgh" id="maindifficultyMenu" role="listbox" aria-label="Difficulty">
+                        <button class="menu-item" type="button" data-difficulty="easy" role="option" aria-selected="false">Easy <span>36</span></button>
                         <button class="menu-item" type="button" data-difficulty="medium" role="option" aria-selected="false">Medium <span>44</span></button>
                         <button class="menu-item" type="button" data-difficulty="hard" role="option" aria-selected="false">Hard <span>51</span></button>
                         <button class="menu-item" type="button" data-difficulty="expert" role="option" aria-selected="false">Expert <span>58</span></button>
                     </div></div>
-                </div></div></div><div id="continueOverlay" class="win-overlay" style="border-radius: 66px;overflow: clip;">
+                </div></div></div><div id="crashscreen" style="visibility:hidden;width: 100dvw;height: 100dvh;position: absolute;background-color: black;z-index: 10000;display: flex;flex-direction: column;justify-content: center;align-items: center;"><h1 style="font-size: 150px;margin-bottom: 50px;">:(</h1><h1>Ceedoku has crashed</h1><h2 id="crashscreenerrormsg">There was no crash message</h2></div><div id="continueOverlay" class="win-overlay" style="border-radius: 66px;overflow: clip;">
 
 
             <div class="win-card" style="">
 
                 
-                <h1 class="win-title" style="color: var(--text2); --darkreader-inline-color: var(--darkreader-text--text2, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Your current game</h1>
+                <h1 class="win-title" style="color: var(--text2); --darkreader-inline-color: var(--darkreader-text--text2, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Save Game Stats</h1>
 
                 <div style=""><div class="win-stats">
 
                     
 <div class="win-stat" style="width: fit-content; margin: 33px auto; background-color: var(--surface-2); padding: 5px 20px; border-radius: 5px; scale: 1.3; box-shadow: 0 0 5px 5px  var(--shadow-color2); --darkreader-inline-bgcolor: var(--darkreader-bg--surface-2, var(--darkreader-background-ffffff, #181a1b));" data-darkreader-inline-bgcolor="">
-    <h2 style="text-align: left;width: fit-content;margin: 0 auto;margin-top: 5px;margin-bottom: 10px;"><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Difficulty: </strong><span id="continueDifficulty" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Easy</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Stopped at: </strong><span id="continueTime" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">00:03</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Mistakes: </strong><span id="continueMistakes" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">0</span></h2>
+    <h2 style="text-align: left;width: fit-content;margin: 0 auto;margin-top: 5px;margin-bottom: 10px;"><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Difficulty: </strong><span id="continueDifficulty" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">Easy</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Stopped at: </strong><span id="continueTime" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">00:00</span><strong style="color: var(--blue); --darkreader-inline-color: var(--darkreader-text--blue, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color=""><br>Mistakes: </strong><span id="continueMistakes" style="color: var(--text3); --darkreader-inline-color: var(--darkreader-text--text3, var(--darkreader-text-000000, #e8e6e3));" data-darkreader-inline-color="">0</span></h2>
     
 </div>
                     
@@ -1664,12 +1752,43 @@ transform: translatey(-5px)
                     
 
                 </div></div>
-		<button class="new-main" onclick="continuegame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button><button class="new-main" onclick="hidecontinuegamemenu()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;background: var(--surface-3);">Cancel</button>
+		<button class="new-main2" onclick="continueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button><button class="new-main2" onclick="hidecontinuegame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;background: var(--surface-3);">Cancel</button>
                 
 
             </div>
 
-        </div><script>
+        </div>		<script id="crash-detector">
+window.addEventListener("error", (event) => {
+    document.getElementById("crashscreen").style.visibility = "visible";
+
+    document.getElementById("crashscreenerrormsg").textContent =
+`A fatal error occurred in the main game script.
+
+${event.message}
+
+File: ${event.filename}
+Line: ${event.lineno}
+Column: ${event.colno}`;
+});
+
+window.addEventListener("unhandledrejection", (event) => {
+    document.getElementById("crashscreen").style.visibility = "visible";
+
+    document.getElementById("crashscreenerrormsg").textContent =
+`An unhandled promise rejection occurred in the main script.
+
+${event.reason}`;
+});
+
+document.querySelectorAll("script[src]").forEach(script => {
+    script.addEventListener("error", () => {
+        document.getElementById("crashscreen").style.visibility = "visible";
+
+        document.getElementById("crashscreenerrormsg").textContent =
+`Failed to load the main game script`;
+    });
+});
+</script>	<script>
 		/******************************************************************************
  * THE SCRIPT - IT FINALLY FUCKING WORKS!
  *
@@ -1685,56 +1804,67 @@ transform: translatey(-5px)
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
-console.log("SCRIPT START");
+			  const mainmenu = document.getElementById("mainmenu");		        
+              let menuOpen = false;			  
+					  function showmainmenu() {
 
-window.onerror = function(msg, url, line, col, err) {
-    console.error("GLOBAL ERROR:", msg, url, line, col, err);
-};
-
-console.log("before function:", typeof showPauseScreen);
-
-function showPauseScreen() {
-    console.log("pause function called");
-}
-
-console.log("after function:", typeof showPauseScreen);
-console.log("window version:", typeof window.showPauseScreen);
+            mainmenu.hidden = false;
+        
+            requestAnimationFrame(() => {
+                mainmenu.classList.add("show");
+            });
+        }
               const DIFFICULTIES = {easy: { label: "Easy", holes: 36 },medium: { label: "Medium", holes: 44 },hard: { label: "Hard", holes: 51 },expert: { label: "Expert", holes: 58 }};
+
               const boardEl = document.getElementById("board");
-              const winOverlay = document.getElementById("winOverlay");
+			  
+              const winOverlay = document.getElementById("winOverlay");			  
               const winDifficulty = document.getElementById("winDifficulty");
               const winTime = document.getElementById("winTime");
               const winMistakes = document.getElementById("winMistakes");
               const winNewGameButton = document.getElementById("winNewGameButton");
-              const winDifficultyToggle = document.getElementById("winDifficultyToggle")
-              const winDifficultyMenu = document.getElementById("windifficultyMenu")
+              const winDifficultyToggle = document.getElementById("winDifficultyToggle");
+              const winDifficultyMenu = document.getElementById("windifficultyMenu");
               const winnewGameBand = document.getElementById("winnewgameband");
               const winToast = document.getElementById("winToast");
+			  
 			  const pauseOverlay = document.getElementById("pauseOverlay");
               const pauseDifficulty = document.getElementById("pauseDifficulty");
               const pauseTime = document.getElementById("pauseTime");
               const pauseMistakes = document.getElementById("pauseMistakes");
               const paueNewGameButton = document.getElementById("pauseNewGameButton")
-              const pauseDifficultyToggle = document.getElementById("pauseDifficultyToggle")
-              const pauseDifficultyMenu = document.getElementById("pausedifficultyMenu")
-              const pausenewGameBand = document.getElementById("paisenewgameband");
-              const numberGrid = document.getElementById("numberGrid");
+              const pauseDifficultyToggle = document.getElementById("pauseDifficultyToggle");
+              const pauseDifficultyMenu = document.getElementById("pausedifficultyMenu");
+              const pausenewGameBand = document.getElementById("pausenewgameband");
+			  
+              const mainDifficultyMenu = document.getElementById("maindifficultyMenu");
+			  const mainDifficultyToggle = document.getElementById("mainDifficultyToggle");
+
+
+              const continueDifficulty = document.getElementById("continueDifficulty");
+              const continueTime = document.getElementById("continueTime");
+              const continueMistakes = document.getElementById("continueMistakes");
+			  const continueOverlay = document.getElementById("continueOverlay");
+			  
               const difficultyBadge = document.getElementById("difficultyBadge");
               const difficultyMenu = document.getElementById("difficultyMenu");
               const difficultyToggle = document.getElementById("difficultyToggle");
               const newGameButton = document.getElementById("newGameButton");
               const newGameBand = document.getElementById("newGameBand");
-              const timerEl = document.getElementById("timer");
+
               const undoButton = document.getElementById("undoButton");
               const redoButton = document.getElementById("redoButton");
               const hintButton = document.getElementById("hintButton");
               const eraseButton = document.getElementById("eraseButton");
               const pencilButton = document.getElementById("pencilButton");
+			  const pauseBtn = document.getElementById("pause-btn");
+			  const modeButton = document.getElementById("mode");			  
+			  
               const mistakeStatus = document.getElementById("mistakeStatus");
               const emptyStatus = document.getElementById("emptyStatus");
-			  const pauseBtn = document.getElementById("pause-btn");
+              const timerEl = document.getElementById("timer");
 			  const title = document.getElementById("title");
-			  const modeButton = document.getElementById("mode");
+              const numberGrid = document.getElementById("numberGrid");	
         
               let solution = [];
               let puzzle = [];
@@ -1751,7 +1881,8 @@ console.log("window version:", typeof window.showPauseScreen);
               let undoStack = [];
               let redoStack = [];
               let finished = false;
-              let menuOpen = false;
+
+
 			  let winmenuOpen = false;
 			let pausemenuOpen = false;
 			let pageMode = localStorage.getItem("theme") || "dark";
@@ -1777,6 +1908,19 @@ console.log("window version:", typeof window.showPauseScreen);
         
             requestAnimationFrame(() => {
                 pauseOverlay.classList.add("show");
+            });
+        }
+					function showcontinueGame() {
+					if(nosave)return
+            continueDifficulty.textContent =
+                difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
+		
+			
+            continueMistakes.textContent = mistakes;
+            continueOverlay.hidden = false;
+        
+            requestAnimationFrame(() => {
+                continueOverlay.classList.add("show");
             });
         }
 
@@ -1909,6 +2053,7 @@ let timerPaused = false;
         elapsedMs = Date.now() - startTime;
 		winTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
 		pauseTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+		continueTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
         timerEl.textContent =
             `Time: ${formatTime(Math.floor(elapsedMs / 1000))}`;
     }, 100);
@@ -1954,6 +2099,10 @@ function pauseTimer() {
 		showPauseScreen()
 		}
 };
+function updateGiveUpButton() {
+    document.getElementById("igiveup")
+        .classList.toggle("disabled", !nosave);
+}
 						function winpauseTimer() {
 		if (!timerPaused) {
 				// PAUSE
@@ -2211,16 +2360,22 @@ function saveGame() {
         function hidewinscreen() {
             winOverlay.classList.remove("show");
         
-            setTimeout(() => {
-                winOverlay.hidden = true;
-            }, 250);
+
+        }
+		        function hidecontinuegame() {
+            continueOverlay.classList.remove("show");
+
+
+        }
+				        function hidemainmenu() {
+            mainmenu.classList.remove("show");
+        
+
         }
                 function hidepausescreen() {
             pauseOverlay.classList.remove("show");
         
-            setTimeout(() => {
-                pauseOverlay.hidden = true;
-            }, 250);
+
         }
 
               function scrubNotes(indexes, beforeStates) {
@@ -2569,6 +2724,11 @@ function forcewin() {
                 difficultyToggle.setAttribute("aria-expanded", "true");
                 updateDifficultyMenu();
               }
+			                function openmainDifficultyMenu() {
+                maindifficultyMenu.classList.add("open");
+                maindifficultyToggle.setAttribute("aria-expanded", "true");
+                updatemainDifficultyMenu();
+              }
 			                function closewinDifficultyMenu() {
                 winmenuOpen = false;
                 winDifficultyMenu.classList.remove("open");
@@ -2594,12 +2754,32 @@ function forcewin() {
                 pauseDifficultyToggle.setAttribute("aria-expanded", "false");
                 updatepauseDifficultyMenu();
               }
+			  			              function openmainDifficultyMenu() {
+                mainmenuOpen = true;
+                mainDifficultyMenu.classList.add("open");
+
+                mainDifficultyToggle.setAttribute("aria-expanded", "false");
+                updatemainDifficultyMenu();
+              }
+			  			  			              function closemainDifficultyMenu() {
+                mainmenuOpen = false;
+                mainDifficultyMenu.classList.remove("open");
+
+                mainDifficultyToggle.setAttribute("aria-expanded", "false");
+              }
         
               function toggleDifficultyMenu() {
                 if (menuOpen) {
                   closeDifficultyMenu();
                 } else {
                   openDifficultyMenu();
+                }
+              }
+			                function togglemainDifficultyMenu() {
+                if (mainmenuOpen) {
+                  closemainDifficultyMenu();
+                } else {
+                  openmainDifficultyMenu();
                 }
               }
 			                function togglewinDifficultyMenu() {
@@ -2622,6 +2802,11 @@ function forcewin() {
                   item.setAttribute("aria-selected", item.dataset.difficulty === difficulty ? "true" : "false");
                 });
               }
+			                function updatemainDifficultyMenu() {
+                difficultyMenu.querySelectorAll(".menu-item").forEach((item) => {
+                  item.setAttribute("aria-selected", item.dataset.difficulty === difficulty ? "true" : "false");
+                });
+              }
               function updatewinDifficultyMenu() {        
 				        windifficultyMenu.querySelectorAll(".menu-item").forEach((item) => {
                   item.setAttribute("aria-selected", item.dataset.difficulty === difficulty ? "true" : "false");
@@ -2632,17 +2817,16 @@ function forcewin() {
                   item.setAttribute("aria-selected", item.dataset.difficulty === difficulty ? "true" : "false");
                 });
 	        }
-function loadGame() {
+			let nosave = false;
+function loadgame() {
     const save = localStorage.getItem("save");
-
-    if (!save) {
-        newGame();
+	    if (save === null) {
+        nosave = true;
+		updateGiveUpButton;
         return;
-    }
-
+		}
     const game = JSON.parse(save);
-
-    // ---------------- BOARD ----------------
+	   // ---------------- BOARD ----------------
     solution = game.solution;
     puzzle = game.puzzle;
     values = game.values;
@@ -2664,7 +2848,7 @@ function loadGame() {
 
     clearInterval(timerId);
 
-    // ---------------- THEME (IMPORTANT FIX) ----------------
+    // ---------------- THEME ----------------
     const savedTheme = localStorage.getItem("theme");
 
     if (savedTheme) {
@@ -2677,33 +2861,47 @@ function loadGame() {
             modeButton.innerHTML = pageMode === "dark" ? "☀" : "<b>☾</b>";	
         }
     }
-    // else: DO NOTHING → keep HTML default (dark)
+
 
     // ---------------- RENDER BOARD ----------------
     renderBoard();
-
-    // ---------------- TIMER UI ----------------
-    if (timerPaused) {
+	    // ---------------- TIMER UI ----------------
 		winTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
         timerEl.textContent =
             `Time: ${formatTime(Math.floor(elapsedMs / 1000))}`;
+	continueTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
 	pauseTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
 	pauseMistakes.textContent = formatTime(Math.floor(elapsedMs / 1000));
-        pauseBtn.textContent = "▶";
-        document.title = "Ceedoku - Paused";
-        showPauseScreen();
-    } else {
-        pauseBtn.textContent = "❚❚";
-        document.title = `Ceedoku - ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`
-
-        startTimer();
-    }
+	continueMistakes.textContent = formatTime(Math.floor(elapsedMs / 1000));
+}
+			
+			
+function continueGame() {
+hidemainmenu();
+    pauseBtn.textContent = "❚❚"; 
+    // ---------------- TIMER UI ----------------
+		winTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+        timerEl.textContent =
+            `Time: ${formatTime(Math.floor(elapsedMs / 1000))}`;
+	continueTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+	pauseTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+	pauseMistakes.textContent = formatTime(Math.floor(elapsedMs / 1000));
+	continueMistakes.textContent = formatTime(Math.floor(elapsedMs / 1000));
+    timerPaused = false;
+	startTimer();
+	hidewinscreen();
+    hidepausescreen();
+    closepauseDifficultyMenu();
+	closemainDifficultyMenu()
+    startTimer();
+	hidecontinuegame();
 }
 
 		window.addEventListener("beforeunload", () => {
 			saveGame();
 		});
 setInterval(saveGame, 5000);
+
 function newGame(nextDifficulty = difficulty) {
     localStorage.removeItem("save");
 
@@ -2716,7 +2914,7 @@ difficultyBadge.textContent = DIFFICULTIES[difficulty].label;
 
     solution = built.full;
     puzzle = built.draft;
-    values = [...puzzle];
+    values = [...puzzle];	
     givens = puzzle.map(v => v !== 0);
     notes = Array.from({ length: 81 }, () => new Set());
 
@@ -2737,19 +2935,24 @@ difficultyBadge.textContent = DIFFICULTIES[difficulty].label;
 
     timerEl.textContent = "Time: 00:00";
 	winTime.textContent = "00:00";
-pauseTime.textContent = "00:00";
+	pauseTime.textContent = "00:00";
+	continueTime.textContent = "00:00"
     pauseBtn.textContent = "❚❚";
 	title.textContent = "Ceedoku"
     hidewinscreen();
     hidepausescreen();
-    closepauseDifficultyMenu()
+    closepauseDifficultyMenu();
+	closemainDifficultyMenu()
     startTimer();
+	hidecontinuegame();
+	hidemainmenu();
+	document.getElementById("igiveup").classList.remove("disabled", !nosave);
 }
         
         
         
               renderNumberPad();
-loadGame();
+
 
 undoButton.addEventListener("click", () => {
     if (timerPaused) return;
@@ -2835,6 +3038,22 @@ winDifficultyMenu.addEventListener("click", (event) => {
 
     console.log("after newGame");
 });
+mainDifficultyMenu.addEventListener("click", (event) => {
+    console.log("listener fired");
+
+    console.log("target:", event.target);
+
+    const item = event.target.closest(".menu-item");
+    console.log("item:", item);
+
+    if (!item) return;
+
+    console.log("difficulty:", item.dataset.difficulty);
+
+    newGame(item.dataset.difficulty);
+
+    console.log("after newGame");
+});
               document.addEventListener("click", (event) => {
                 if (!winnewGameBand.contains(event.target)) closeDifficultyMenu();
 				if (timerPaused) return;
@@ -2894,10 +3113,41 @@ document.addEventListener("keyup", (event) => {
                   selectCell(nextRow * 9 + nextCol);
                 }
               });   
-			console.log("end reached");
-console.log(typeof showPauseScreen);
+			  function forceAriaSelectedFalse() {
+    const menu = document.getElementById("maindifficultyMenu");
+    if (!menu) return;
 
+    const observer = new MutationObserver(() => {
+        menu.querySelectorAll('[aria-selected="true"]').forEach(button => {
+            button.setAttribute("aria-selected", "false");
+        });
+    });
+
+    observer.observe(menu, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ["aria-selected"]
+    });
+
+    // Also clear any that are already true
+    menu.querySelectorAll('[aria-selected="true"]').forEach(button => {
+        button.setAttribute("aria-selected", "false");
+    });
+}
+forceAriaSelectedFalse();
+
+window.addEventListener("load", () => {
+    mainmenu.hidden = false;
+    mainmenu.classList.add("show");
+
+    requestAnimationFrame(() => {
+        mainmenu.classList.add("transitions");
+    });
+});
+loadgame()
         </script>
+
+	
 
 
 
