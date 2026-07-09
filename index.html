@@ -1,6 +1,8 @@
 <html lang="en">
 
 <head>
+	<script id="version"> const version = "2.0.4";document.getElementById("version").textContent = `Version: ${version}`;</script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="theme-color" content="#101418">
@@ -797,8 +799,6 @@ position: relative;
             transform: scale(1);
           }
         }
-		.cmon {
-			transform: translatey(-16.7dvh)
 		}
         .status-line {
           display: flex;
@@ -1061,10 +1061,7 @@ position: relative;
 		  right: -0.2% !important;
 		}
         .difficulty-menu {
-          position: absolute;
           z-index: 5;
-          top: -250%;
-          right: -65%;
           width: min(100%, 230px);
           padding: 8px;
           display: none;
@@ -1721,7 +1718,7 @@ transform: translatey(-5px)
         </div>
 
      </div></div>   
-        <div id="mainmenu" class="win-overlay2" style="align-items: normal;height: 101dvh;position: absolute;width: 100dvw;background-color: var(--bg);display: flex;flex-direction: column;padding: 20px;justify-content: center;z-index: 4999;"><div class="cmon" style="display: flex;flex-direction: column;align-content: center;/*! justify-content: center; */"><div style="display:flex;justify-content:center"><img style="width:90%" class="whatdoievencallthis" src="./title.png" alt="CEEDOKU"></div><div style="margin-top: 20px;"><button class="new-main2" id="igiveup" onclick="showcontinueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button></div><div style="margin-top: 20px;/*! margin-left: 50px; *//*! margin-right: 50px; *//*! margin-bottom: 20px; */"><button class="new-main2" onclick="openmainDifficultyMenu()" id="mainDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">New Game</button><div class="new-game-band" id="mainnewgameband" style="">
+        <div id="mainmenu" class="win-overlay2" style="align-items: normal;height: 101dvh;position: absolute;width: 100dvw;background-color: var(--bg);display: flex;flex-direction: column;padding: 20px;justify-content: center;z-index: 4999;"<h3 id="version" style="position: absolute;bottom: 0px;z-index: 9999;margin-bottom: 0px;left: 50dvw;transform: translatex(-50%);">Version: *loading*</h3><div class="cmon" style="display: flex;flex-direction: column;align-content: center;"><div style="display:flex;justify-content:center"><img style="width:90%" class="whatdoievencallthis" src="./title.png" alt="CEEDOKU"></div><div style="margin-top: 20px;"><button class="new-main2" id="igiveup" onclick="showcontinueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button></div><div style="margin-top: 20px;"><button class="new-main2" onclick="openmainDifficultyMenu()" id="mainDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">New Game</button>
                     
                     
                     <div class="difficulty-menu urgh" id="maindifficultyMenu" role="listbox" aria-label="Difficulty">
@@ -1729,7 +1726,7 @@ transform: translatey(-5px)
                         <button class="menu-item" type="button" data-difficulty="medium" role="option" aria-selected="false">Medium <span>44</span></button>
                         <button class="menu-item" type="button" data-difficulty="hard" role="option" aria-selected="false">Hard <span>51</span></button>
                         <button class="menu-item" type="button" data-difficulty="expert" role="option" aria-selected="false">Expert <span>58</span></button>
-                    </div></div>
+					</div>
                 </div></div></div><div id="crashscreen" style="visibility:hidden;width: 100dvw;height: 100dvh;position: absolute;background-color: black;z-index: 10000;display: flex;flex-direction: column;justify-content: center;align-items: center;"><h1 style="font-size: 150px;margin-bottom: 50px;">:(</h1><h1>Ceedoku has crashed</h1><h2 id="crashscreenerrormsg">There was no crash message</h2></div><div id="continueOverlay" class="win-overlay" style="border-radius: 66px;overflow: clip;">
 
 
