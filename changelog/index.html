@@ -122,10 +122,20 @@ input[type="submit"] {
 }
 
 #markdown-content blockquote {
-    border-left: 4px solid var(--blue);
+    border-left: 4px solid 4px solid #afb2b5;
     padding-left: 15px;
     margin-left: 0;
-    color: var(--text3);
+    color: var(--muted);
+}
+#markdown-content blockquote::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 4px;
+    background: var(--blue);
+    border-radius: 999px;
 }
 
 #markdown-content code {
