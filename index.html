@@ -1,7 +1,7 @@
 <html lang="en">
 
 <head>
-	<script id="version"> const version = "2.0.4";document.getElementById("version").textContent = `Version: ${version}`;</script>
+    <script id="vervar">const version = "2.0.5";</script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1718,7 +1718,7 @@ transform: translatey(-5px)
         </div>
 
      </div></div>   
-        <div id="mainmenu" class="win-overlay2" style="align-items: normal;height: 101dvh;position: absolute;width: 100dvw;background-color: var(--bg);display: flex;flex-direction: column;padding: 20px;justify-content: center;z-index: 4999;"<h3 id="version" style="position: absolute;bottom: 0px;z-index: 9999;margin-bottom: 0px;left: 50dvw;transform: translatex(-50%);">Version: *loading*</h3><div class="cmon" style="display: flex;flex-direction: column;align-content: center;"><div style="display:flex;justify-content:center"><img style="width:90%" class="whatdoievencallthis" src="./title.png" alt="CEEDOKU"></div><div style="margin-top: 20px;"><button class="new-main2" id="igiveup" onclick="showcontinueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button></div><div style="margin-top: 20px;"><button class="new-main2" onclick="openmainDifficultyMenu()" id="mainDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">New Game</button>
+        <div id="mainmenu" class="win-overlay2" style="align-items: normal;height: 101dvh;position: absolute;width: 100dvw;background-color: var(--bg);display: flex;flex-direction: column;padding: 20px;justify-content: center;z-index: 4999;"><h3 id="version" style="position: absolute;bottom: 0px;z-index: 9999;margin-bottom: 0px;left: 50dvw;transform: translatex(-50%);">Version: *loading*</h3><div class="cmon" style="display: flex;flex-direction: column;align-content: center;"><div style="display:flex;justify-content:center"><img style="width:90%" class="whatdoievencallthis" src="./title.png" alt="CEEDOKU"></div><div style="margin-top: 20px;"><button class="new-main2" id="igiveup" onclick="showcontinueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button></div><div style="margin-top: 20px;"><button class="new-main2" onclick="openmainDifficultyMenu()" id="mainDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">New Game</button>
                     
                     
                     <div class="difficulty-menu urgh" id="maindifficultyMenu" role="listbox" aria-label="Difficulty">
@@ -1757,7 +1757,9 @@ transform: translatey(-5px)
 
             </div>
 
-        </div>		<script id="crash-detector">
+        </div><script id="setver">
+document.getElementById("version").textContent = `Version: ${version}`;
+</script>		<script id="crash-detector">
 window.addEventListener("error", (event) => {
     document.getElementById("crashscreen").style.visibility = "visible";
 
