@@ -1,3 +1,6 @@
+- ### Version 2.0.7:
+  > #### Changes:
+  >> - Fixed a bug involving the difficulty menus displaying wrong.
 - ### Version 2.0.6:
   > #### Changes:
   >> - Made the 'Version:' text bold.
