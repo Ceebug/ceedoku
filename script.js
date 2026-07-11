@@ -775,6 +775,17 @@ function findHiddenSingleForCell(index) {
       );
 
       if (possible.length === 1 && possible[0] === index) {
+		  console.log({
+  index,
+  number,
+  unit,
+  possible,
+  candidates: unit.map(i => ({
+    i,
+    value: values[i],
+    candidates: values[i] ? [] : getCandidates(i)
+  }))
+});
         return {
           index,
           value: number
@@ -782,7 +793,7 @@ function findHiddenSingleForCell(index) {
       }
     }
   }
-
+ 
   return null;
 }
 
