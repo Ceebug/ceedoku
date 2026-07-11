@@ -993,7 +993,9 @@ body.light .whatdoievencallthis {
         .history-button:active:not(:disabled) {
           transform: translateY(1px);
         }
-    
+	.disabled {
+		          transform: translateY(0px);
+    }
         .hint-button {
           width: 100%;
           padding: 0 16px;
@@ -1035,7 +1037,7 @@ body.light .whatdoievencallthis {
         }
 		.new-main2.disabled {
 		  cursor: not-allowed;
-		  background: var(--muted) !important;
+		  background: #b1bdcc !important;
 		  color: #dde1e7;
 		}
 				.new-main2.disabled:hover {
@@ -1167,6 +1169,9 @@ body.light .whatdoievencallthis {
           gap: 4px;
         }
 //aaaah
+			button {
+    -webkit-tap-highlight-color: transparent;
+    }
         .erase-button[aria-pressed="true"]:hover {
           color: color-mix(in srgb, var(--lime-text) 80%, #fff);
           background: color-mix(in srgb, var(--lime-soft) 80%, #fff);
@@ -1318,212 +1323,7 @@ body.light .whatdoievencallthis {
           .topbar {
             align-items: start;
           }
-		  .sidebar {
-			height: fit-content
-			}
-		
-          .control-band {
-            grid-template-columns: 1fr;
-          }
-    
-          .hint-wrap,
-          .timer-wrap,
-          .history-wrap {
-            justify-self: stretch;
-          }
-    
-          .hint-button,
-    
-    
-          .number-grid {
-            grid-template-columns: repeat(5, 1fr);
-          }
-        }
-         .pencilanderaser {
-    	display: flex;
-    	gap: 10px;
-            background-color: var(--surface-2); 
-            border-radius: 1004px;             
-            padding: 5px;                  
-            box-sizing: border-box;    
-			height: 60px
-          }
-        .hint-button:active,
-        .new-main:active,
-        .new-side:active,
-		.new-main2:active,
-        .number-button:active,
-        .menu-item:active,
-        .theme-toggle:active,
-        .history-button:active:not(:disabled) {
-	  background: color-mix(in srgb, var(--blue-soft) 65%, var(--surface-2));
-          transform: translateY(1px);
-        }
-          .pencilanderaserbutton {
-    	flex: 1;
-    	padding: 20px
-    	border-radius: 6px
-
-          }
-
-		@media (orientation: portrait) {
-				        .hint-button:hover,
-        .new-main:hover,
-        .new-side:hover,
-		.new-main2:hover,
-        .number-button:hover,
-        .menu-item:hover,
-        .theme-toggle:hover,
-        .history-button:hover:not(:disabled) {
-          border-radius: var(--radius);
-          color: var(--muted);
-          background: var(--surface-2);
-          transition: transform .12s ease, background .14s ease, color .14s ease, box-shadow .14s ease;
-        }
-	.pencil-button:hover,
-	.erase-button:hover {
-	background: var(--pencilerasebutton)
-	} 
-		.new-main:hover {
-          border-top-right-radius: 0 !important;
-          border-bottom-right-radius: 0 !important;
-          background: var(--blue);
-          color: #fff;
-          font-size: 1.02rem;
-          font-weight: 850;
-		  border-radius: var(--radius);
-		  }
-		 .new-main2:hover {
-          border-top-right-radius: 999px !important;
-          border-bottom-right-radius: 999px !important;
-          background: var(--blue);
-          color: #fff;
-          font-size: 1.02rem;
-          font-weight: 850;
-		  border-radius: var(--radius);
-		  }
-#mode {
-transform: translatey(-5px)
-}
-		.new-side:hover {
-		  border-top-left-radius: 0 !important;
-          border-bottom-left-radius: 0 !important;
-          background: color-mix(in srgb, var(--blue) 86%, #000);
-          color: #fff;
-          display: grid;
-          place-items: center;
-          border-left: 1px solid rgba(255, 255, 255, .24);
-		  border-radius: var(--radius);
-		  }
-        .pencil-button[aria-pressed="true"]:active {
-          color: color-mix(in srgb, var(--lime-text) 80%, #fff);
-          background: color-mix(in srgb, var(--lime-soft) 80%, #fff);
-          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 90%, transparent);
-        }
-        .pencil-button[aria-pressed="true"]:hover {
-          color: var(--lime-text);
-          background: var(--lime-soft);
-          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 68%, transparent);
-        }
-    
-        .erase-button[aria-pressed="true"] {
-          color: var(--lime-text);
-          background: var(--lime-soft);
-          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 68%, transparent);
-        }
-    
-        .erase-button[aria-pressed="true"]:active {
-          color: color-mix(in srgb, var(--lime-text) 80%, #fff);
-          background: color-mix(in srgb, var(--lime-soft) 80%, #fff);
-          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 90%, transparent);
-        }
-        .erase-button[aria-pressed="true"]:hover {
-          color: var(--lime-text);
-          background: var(--lime-soft);
-          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 68%, transparent);
-        }
-		
-		        .pencil-button[aria-pressed="true"]:hover {
-          color: var(--lime-text);
-          background: var(--lime-soft);
-          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 68%, transparent);
-        }
-				        .erase-button[aria-pressed="true"]:hover {
-          color: var(--lime-text);
-          background: var(--lime-soft);
-          box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 68%, transparent);
-        }
-    .topbar {
-        padding-left: 15px;
-    }
-	.game-shell {
-		border-radius: 52px;
-	}
-	
-	.main {
-		gap: 5px;
-	}
-	.hint-wrap {
-		width: 33.3%;
-		}
-	#pause-btn {
-		width: 50px;
-		transform: translatey(-5px)translatex(0px)
-		}
-	#mode {
-		padding: 0 0 2 0px !important;
-		height: 42.75 !important;
-		width: 45% !important;
-	}	
-	.bar {
-	width: 45%
-	}
-	#pause-btn {
-	width: 45% !important;
-	height: 42.75 !important;
-	padding: 0 5 0 5
-	}
-	.sidebar{
-		border-top-right-radius: 34px;
-		border-top-left-radius: 34px;
-		gap: 10px;
-		padding-bottom: 4px;
-		display: flex !important;
-		flex-direction: column;
-	}
-	.timer-wrap {
-		font-size: 12px;
-		width: 33.35%;
-		justify-self: center;
-		padding: 0 10px !important;
-	}
-	.aah {
-		width: 33.3%;
-	}
-	.hint-button:active,
-.pencil-button:active:not([aria-pressed="true"]),
-.new-side:active,
-.new-main:active,
-.new-main2:active,
-.number-button:active,
-.erase-button:active:not([aria-pressed="true"]),
-.menu-item:active,
-.theme-toggle:active,
-.history-button:active:not(:disabled) {
-    background: color-mix(in srgb, var(--blue-soft2) 65%, var(--surface-2));
-    color: var(--muted);
-    transform: translateY(1px);
-    border-radius: 999px;
-	border-top-right-radius: 999px !important;
-	border-bottom-right-radius: 999px !important;
-}
-
-
-	button {
-    -webkit-tap-highlight-color: transparent;
-
-    }
-	.control-band {
+				.control-band {
 		height: 58px;
 		padding: 7px !important;
 		display: flex !important
@@ -1598,23 +1398,95 @@ transform: translatey(-5px)
 		top: 120%;
 		box-shadow: none !important
 	}
-	.delete-button:hover {
-		background-color: var(--delete-save)
+		  .sidebar {
+			height: fit-content
+			}
+					#mode {
+transform: translatey(-5px)
+}
+		
+          .control-band {
+            grid-template-columns: 1fr;
+          }
+    
+          .hint-wrap,
+          .timer-wrap,
+          .history-wrap {
+            justify-self: stretch;
+          }
+			    .topbar {
+        padding-left: 15px;
+    }
+	.game-shell {
+		border-radius: 52px;
 	}
-	.delete-button:active {
-		background: color-mix(in srgb, var(--delete-save) 70%, var(--surface-2))
+	
+	.main {
+		gap: 5px;
 	}
-	.cancel-button:hover {
-		background-color: var(--muted)
+	.hint-wrap {
+		width: 33.3%;
+		}
+	#pause-btn {
+		width: 50px;
+		transform: translatey(-5px)translatex(0px)
+		}
+	#mode {
+		padding: 0 0 2 0px !important;
+		height: 42.75 !important;
+		width: 45% !important;
+	}	
+	.bar {
+	width: 45%
 	}
-	.cancel-button:active {
-		background: color-mix(in srgb, var(--muted) 70%, var(--surface-2))
+	#pause-btn {
+	width: 45% !important;
+	height: 42.75 !important;
+	padding: 0 5 0 5
 	}
-	.whatdoievencallthis {
+	.sidebar{
+		border-top-right-radius: 34px;
+		border-top-left-radius: 34px;
+		gap: 10px;
+		padding-bottom: 4px;
+		display: flex !important;
+		flex-direction: column;
+	}
+	.timer-wrap {
+		font-size: 12px;
+		width: 33.35%;
+		justify-self: center;
+		padding: 0 10px !important;
+	}
+	.aah {
+		width: 33.3%;
+	}
+    
+          .hint-button,
+          .number-grid {
+            grid-template-columns: repeat(5, 1fr);
+          }
+        }
+         .pencilanderaser {
+    	display: flex;
+    	gap: 10px;
+            background-color: var(--surface-2); 
+            border-radius: 1004px;             
+            padding: 5px;                  
+            box-sizing: border-box;    
+			height: 60px
+          }
+
+          .pencilanderaserbutton {
+    	flex: 1;
+    	padding: 20px
+    	border-radius: 6px
+          }
+			.whatdoievencallthis {
 		width: 100%
 	}
-}
     </style>
+<link id="touchStyles" rel="stylesheet" href="touch.css">
 	<script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./sw.js')
@@ -1872,7 +1744,7 @@ transform: translatey(-5px)
                 <div style=""><div class="win-stats">
 
                     
-<div class="win-stat" style="width: fit-content; margin: 33px auto; background-color: var(--surface-2); padding: 5px 20px; border-radius: 5px; scale: 1.3; box-shadow: 0 0 5px 5px  var(--shadow-color2);">
+<div class="win-stat" style="width: fit-content; margin: 33px auto; background-color: var(--surface-2); padding: 5px 20px; border-radius: 5px;; box-shadow: 0 0 5px 5px  var(--shadow-color2);">
 <h2 style="text-align: center;width: fit-content;margin: 0 auto;margin-top: 5px;margin-bottom: 2.5px;">Are you sure you want<br> to delete your save file?</h2>
 <h4 style="margin-bottom: 10px;margin-top: 0px;">It is strongly recommended to <strong style="font-variant: small-caps;">only</strong><br>delete your save file if you have to.<br></h4>    
 </div>
@@ -1891,7 +1763,22 @@ transform: translatey(-5px)
 
             </div>
 
-        </div><script id="setver">
+        </div>
+<script id="touchormousedetector">const touchStyles = document.getElementById("touchStyles");
+
+touchStyles.disabled = !window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+window.addEventListener("pointermove", (e) => {
+    if (e.pointerType === "mouse") {
+        touchStyles.disabled = true;
+    }
+});
+
+window.addEventListener("pointerdown", (e) => {
+    if (e.pointerType === "touch") {
+        touchStyles.disabled = false;
+    }
+});</script><script id="setver">
 document.getElementById("version").textContent = `Version: ${version}`;
 </script>		<script id="crash-detector">
 window.addEventListener("error", (event) => {
@@ -1940,7 +1827,8 @@ document.querySelectorAll("script[src]").forEach(script => {
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
-			  const mainmenu = document.getElementById("mainmenu");		        
+			  const mainmenu = document.getElementById("mainmenu");	
+	let runninggame = false	        
               let menuOpen = false;			  
 					  function showmainmenu() {
 
@@ -2220,7 +2108,7 @@ function pauseTimer() {
         pauseBtn.textContent = "▶";
         document.title = "Ceedoku - Paused";
 
-        saveGame();
+        if (runninggame){saveGame()};
 		showPauseScreen()
     } else {
         // RESUME
@@ -2402,9 +2290,10 @@ if (value) {
             updateNumberCounts();
             updateStatus();
             updateHistoryButtons();
-			saveGame()
+		if (runninggame){saveGame()}
         }
 function saveGame() {
+if (runninggame){
     if (solution.length !== 81) return;
     localStorage.setItem("save", JSON.stringify({
         solution,
@@ -2424,6 +2313,7 @@ function saveGame() {
         finished,
         pageMode
     }));
+}
 }
               function selectCell(index) {
                 selected = index;
@@ -3042,6 +2932,7 @@ loadgame();
 loadtheme();		
 			
 function continueGame() {
+runninggame = true;
 hidemainmenu();
     pauseBtn.textContent = "❚❚"; 
     // ---------------- TIMER UI ----------------
@@ -3065,6 +2956,7 @@ hidemainmenu();
 setInterval(saveGame, 5000);
 
 function newGame(nextDifficulty = difficulty) {
+    runninggame = true
     localStorage.removeItem("save");
 
     difficulty = nextDifficulty;
