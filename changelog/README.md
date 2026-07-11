@@ -1,6 +1,13 @@
 - ### Version 2.1.4:
   > #### Changes:
   >> ##### Fixed:
+  >>> - Fixed the last of the active vs hover states for some buttons when in touch mode.
+  >> ##### Changed:
+  >>> - Made disabled buttons not have a hover or active color.
+  >>> - Made disabled buttons not animate when clicked.
+- ### Version 2.1.4:
+  > #### Changes:
+  >> ##### Fixed:
   >>> - Fixed the active vs hover states for some buttons when in touch mode.
 - ### Version 2.1.3:
   > #### Changes:
