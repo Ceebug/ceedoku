@@ -13,6 +13,7 @@
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
+
 			  const mainmenu = document.getElementById("mainmenu");	
 	let runninggame = false	        
               let menuOpen = false;			  
@@ -1384,3 +1385,6 @@ function deleteGame() {
 	delsave()
 	location.reload()
 }
+setTimeout(() => {
+    document.body.style.visibility = "visible";
+}, 100);
