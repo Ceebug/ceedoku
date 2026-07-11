@@ -709,18 +709,87 @@ if (runninggame){
                 undoStack.push(move);
                 applyHistoryMove(move, "redo");
               }
-        
+function getCandidates(index) {
+  const used = new Set();
+
+  for (const i of peers(index)) {
+    if (values[i]) used.add(values[i]);
+  }
+
+  const candidates = [];
+
+  for (let n = 1; n <= 9; n++) {
+    if (!used.has(n)) candidates.push(n);
+  }
+
+  return candidates;
+}
+function findNakedSingle(index) {
+  const candidates = getCandidates(index);
+
+  if (candidates.length === 1) {
+    return {
+      index,
+      value: candidates[0]
+    };
+  }
+  return null;
+}
+function findHiddenSingle() {
+  const units = getAllUnits();
+
+  for (const unit of units) {
+    for (let number = 1; number <= 9; number++) {
+      const possibleCells = unit.filter(index =>
+        !givens[index] &&
+        values[index] === 0 &&
+        getCandidates(index).includes(number)
+      );
+
+      if (possibleCells.length === 1) {
+        return {
+          index: possibleCells[0],
+          value: number
+        };
+      }
+    }
+  }
+
+  return null;
+}
+function findMove() {
+  return (
+    findNakedSingle() ||
+    findHiddenSingle() ||
+    null
+  );
+}
+
               function hint() {
                 if (finished) return;
-                let target = selected;
-                if (givens[target] || values[target] === solution[target]) {
-                  target = values.findIndex((value, index) => !givens[index] && value !== solution[index]);
-                }
-                if (target === -1) return;
+let move = null;
+
+
+if (selected !== null && !givens[selected] && values[selected] === 0) {
+  move = findMoveForCell(selected);
+}
+if (!move) {
+  for (let i = 0; i < 81; i++) {
+    if (givens[i] || values[i] !== 0) continue;
+
+    move = findMoveForCell(i);
+
+    if (move) break;
+  }
+}
+
+if (!move) return;
+
+const target = move.index;
                 selected = target;
                 const beforeStates = new Map([[target, cellSnapshot(target)]]);
                 const previousCompleted = getCompletedUnits();
-                values[target] = solution[target];
+                values[target] = move.value;
                 notes[target].clear();
                 const nextCompleted = getCompletedUnits();
                 scrubNotes(collectNewlyCompleted(previousCompleted, nextCompleted), beforeStates);
@@ -1389,3 +1458,4 @@ function deleteGame() {
 setTimeout(() => {
     document.body.style.visibility = "visible";
 }, 100);
+
