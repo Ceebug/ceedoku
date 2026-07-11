@@ -1,3 +1,10 @@
+- ### Version 2.1.1:
+  > #### Changes:
+  >> ##### Changed:
+  >>> - Changed the cells to have rounded corners.
+  >>> - Changed the hover state of buttons in light mode to be a little better
+  >> ##### Added:
+  >>> - Added hover and active states for new buttons
 - ### Version 2.1.0:
   > #### Changes:
   >> ##### Added:
