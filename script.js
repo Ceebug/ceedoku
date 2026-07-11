@@ -710,6 +710,8 @@ if (runninggame){
                 applyHistoryMove(move, "redo");
               }
 function getCandidates(index) {
+  if (values[index] !== 0) return [];
+
   const used = new Set();
 
   for (const i of peers(index)) {
@@ -724,6 +726,7 @@ function getCandidates(index) {
 
   return candidates;
 }
+
 function findNakedSingle(index) {
   const candidates = getCandidates(index);
 
@@ -733,22 +736,30 @@ function findNakedSingle(index) {
       value: candidates[0]
     };
   }
+
   return null;
 }
-function findHiddenSingle() {
-  const units = getAllUnits();
 
-  for (const unit of units) {
+function findHiddenSingleForCell(index) {
+  if (givens[index] || values[index] !== 0) return null;
+
+  const unitList = [
+    rows[Math.floor(index / 9)],
+    cols[index % 9],
+    boxes[Math.floor(index / 27) * 3 + Math.floor((index % 9) / 3)]
+  ];
+
+  for (const unit of unitList) {
     for (let number = 1; number <= 9; number++) {
-      const possibleCells = unit.filter(index =>
-        !givens[index] &&
-        values[index] === 0 &&
-        getCandidates(index).includes(number)
+      const possible = unit.filter(i =>
+        !givens[i] &&
+        values[i] === 0 &&
+        getCandidates(i).includes(number)
       );
 
-      if (possibleCells.length === 1) {
+      if (possible.length === 1 && possible[0] === index) {
         return {
-          index: possibleCells[0],
+          index,
           value: number
         };
       }
@@ -757,47 +768,59 @@ function findHiddenSingle() {
 
   return null;
 }
-function findMove() {
+
+function findMoveForCell(index) {
   return (
-    findNakedSingle() ||
-    findHiddenSingle() ||
+    findNakedSingle(index) ||
+    findHiddenSingleForCell(index) ||
     null
   );
 }
 
-              function hint() {
-                if (finished) return;
-let move = null;
+function hint() {
+  if (finished) return;
 
+  let move = null;
 
-if (selected !== null && !givens[selected] && values[selected] === 0) {
-  move = findMoveForCell(selected);
-}
-if (!move) {
-  for (let i = 0; i < 81; i++) {
-    if (givens[i] || values[i] !== 0) continue;
-
-    move = findMoveForCell(i);
-
-    if (move) break;
+  if (selected !== null && !givens[selected] && values[selected] === 0) {
+    move = findMoveForCell(selected);
   }
+
+  if (!move) {
+    for (let i = 0; i < 81; i++) {
+      if (givens[i] || values[i] !== 0) continue;
+
+      move = findMoveForCell(i);
+
+      if (move) break;
+    }
+  }
+
+  if (!move) return;
+
+  const target = move.index;
+  selected = target;
+
+  const beforeStates = new Map([[target, cellSnapshot(target)]]);
+  const previousCompleted = getCompletedUnits();
+
+  values[target] = move.value;
+  notes[target].clear();
+
+  const nextCompleted = getCompletedUnits();
+
+  scrubNotes(
+    collectNewlyCompleted(previousCompleted, nextCompleted),
+    beforeStates
+  );
+
+  pushChanges(makeChangeList(beforeStates), target);
+
+  paintBoard();
+  animateNewCompletions(previousCompleted, selected);
+  checkWin();
 }
-
-if (!move) return;
-
-const target = move.index;
-                selected = target;
-                const beforeStates = new Map([[target, cellSnapshot(target)]]);
-                const previousCompleted = getCompletedUnits();
-                values[target] = move.value;
-                notes[target].clear();
-                const nextCompleted = getCompletedUnits();
-                scrubNotes(collectNewlyCompleted(previousCompleted, nextCompleted), beforeStates);
-                pushChanges(makeChangeList(beforeStates), target);
-                paintBoard();
-                animateNewCompletions(previousCompleted, selected);
-                checkWin();
-              }
+             
         
               function updateHistoryButtons() {
                 undoButton.disabled = undoStack.length === 0;
