@@ -1,7 +1,13 @@
-- ### Version 2.1.1:
+- ### Version 2.1.3:
+  > #### Changes:
+  >> ##### Changed:
+  >>> - Changed the stylesheet to be located in a separate file.
+  >>> - Changed the script to be located in a separate file.
+  >>> - Changed touchscreen detection to use a script.
+- ### Version 2.1.2:
   > #### Changes:
   >> ##### Fixed:
-  >>> - Number buttons staying highlighted when in mobile
+  >>> - Fixed number buttons staying highlighted when in mobile.
 - ### Version 2.1.1:
   > #### Changes:
   >> ##### Changed:
