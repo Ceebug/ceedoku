@@ -485,11 +485,6 @@ if (value) {
 function saveGame() {
 if (runninggame){
     if (solution.length !== 81) return;
-  console.log("SAVING GAME", {
-    runninggame,
-    elapsedMs,
-    stack: new Error().stack
-});
     localStorage.setItem("save", JSON.stringify({
         solution,
         puzzle,
@@ -824,29 +819,9 @@ function hint() {
     }
   }
 
+  console.log("MOVE =", move);
+
   if (!move) return;
-
-  const target = move.index;
-  selected = target;
-
-  const beforeStates = new Map([[target, cellSnapshot(target)]]);
-  const previousCompleted = getCompletedUnits();
-
-  values[target] = move.value;
-  notes[target].clear();
-
-  const nextCompleted = getCompletedUnits();
-
-  scrubNotes(
-    collectNewlyCompleted(previousCompleted, nextCompleted),
-    beforeStates
-  );
-
-  pushChanges(makeChangeList(beforeStates), target);
-
-  paintBoard();
-  animateNewCompletions(previousCompleted, selected);
-  checkWin();
 }
              
         
