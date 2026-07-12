@@ -2,6 +2,7 @@
         :root {
     color-scheme: dark;
           --bg: #f4f7fb;
+		  --outline: #f4f7fb;
           --surface: #ffffff;
           --surface-2: #edf3f9;
           --surface-3: #dde8f2;
@@ -239,6 +240,7 @@ font-size: clamp(1.20rem, 5vw, 2.5rem)
     color-scheme: dark;
 		  overflow: hidden;
           color-scheme: dark;
+		  --outline: #2a3442;
           --bg: #101418;
           --surface: #171d24;
           --surface-2: #202833;

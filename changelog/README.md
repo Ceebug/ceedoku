@@ -1,3 +1,11 @@
+- ### Version 2.3.2:
+  > #### Changes:
+  >> ##### Added:
+  >>> - Added a border on the sides of the site controls when in dark mode.
+- ### Version 2.3.1:
+  > #### Changes:
+  >> ##### Fixed:
+  >> - Fixed the buttons inside the site controls to look correct on mobile
 - ### Version 2.3.0:
   > #### Changes:
   >> ##### Changed:
