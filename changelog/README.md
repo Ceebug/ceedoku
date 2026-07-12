@@ -1,6 +1,15 @@
-- ### Version 2.1.5:
+- ### Version 2.3.0:
   > #### Changes:
-  >> ##### Changed
+  >> ##### Changed:
+  >>> - Changed the position of the light/dark mode button to the site controls bar (which was also added in this update).
+  >> ##### Added:
+  >>> - Added a fullscreen button.
+  >>> - Added a site control bar.
+  >> ##### Removed:
+  >>> - Removed the light/dark mode button from the main menu (since it has been replaced). 
+- ### Version 2.2.0:
+  > #### Changes:
+  >> ##### Changed:
   >>> - Changed the border radius of the main box.
   >>> - Changed the sidebar to correctly set its height.
   >>> - Changed the hint button to try and use solving strategies over using information the player doesnt have.
