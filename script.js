@@ -71,7 +71,7 @@
               const pencilButton = document.getElementById("pencilButton");
 	      const pauseBtn = document.getElementById("pause-btn");
 	      const modeButton = document.getElementById("mode");			  
-	      const modeButton2 = document.getElementById("mode2");	
+
 			  
               const mistakeStatus = document.getElementById("mistakeStatus");
               const emptyStatus = document.getElementById("emptyStatus");
@@ -80,6 +80,7 @@
               const numberGrid = document.getElementById("numberGrid");	
 
 	      const deleteOverlay = document.getElementById("deleteOverlay")
+	     const fullscreenButton = document.getElementById("fullscreen")
         
               let solution = [];
               let puzzle = [];
@@ -125,6 +126,37 @@
                 pauseOverlay.classList.add("show");
             });
         }
+const isAndroidPWA =
+  /Android/i.test(navigator.userAgent) &&
+  (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.matchMedia("(display-mode: fullscreen)").matches ||
+    window.matchMedia("(display-mode: minimal-ui)").matches
+  );
+
+if (isAndroidPWA && fullscreenButton) {
+  fullscreenButton.style.width = "0";
+  fullscreenButton.style.height = "0";
+  fullscreenButton.style.visibility = "hidden";
+}
+function fullscreen() {
+  if (!fullscreenButton) return;
+
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+    fullscreenButton.textContent = "❮ ❯";
+  } else {
+    document.documentElement.requestFullscreen();
+    fullscreenButton.textContent = "❯ ❮";
+  }
+}
+document.addEventListener("fullscreenchange", () => {
+  if (!fullscreenButton) return;
+
+  fullscreenButton.textContent = document.fullscreenElement
+    ? "❯ ❮"
+    : "❮ ❯";
+});
 
 					function showcontinueGame() {
 					if(nosave)return
@@ -167,9 +199,6 @@ function changemode(forceMode) {
 
     if (modeButton) {
         modeButton.innerHTML = pageMode === "dark" ? "☀" : "<b>☾</b>";
-    }
-	    if (modeButton2) {
-        modeButton2.innerHTML = pageMode === "dark" ? "☀" : "<b>☾</b>";
     }
 }
         
@@ -1278,9 +1307,6 @@ function loadtheme() {
         if (modeButton) {
             modeButton.innerHTML = pageMode === "dark" ? "☀" : "<b>☾</b>";	
         }
-		    if (modeButton2) {
-        modeButton2.innerHTML = pageMode === "dark" ? "☀" : "<b>☾</b>";
-    }
 }
 
 	    // ---------------- TIMER UI ----------------
