@@ -1,3 +1,9 @@
+- ### Version 2.1.5:
+  > #### Changes:
+  >> ##### Changed
+  >>> - Changed the border radius of the main box.
+  >>> - Changed the sidebar to correctly set its height.
+  >>> - Changed the hint button to try and use solving strategies over using information the player doesnt have.
 - ### Version 2.1.4:
   > #### Changes:
   >> ##### Fixed:
