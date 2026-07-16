@@ -1,5 +1,6 @@
 
 			        .hint-button:active,
+		.cancel-button:active,
         .new-main:active,
         .new-side:active,
 		.new-main2:active,
@@ -7,10 +8,11 @@
         .menu-item:active,
         .theme-toggle:active,
         .history-button:active:not(:disabled) {
-	  background: color-mix(in srgb, var(--blue-soft) 65%, var(--surface-2));
+	  background: color-mix(in srgb, var(--blue-soft) 65%, var(--surface-2)) !important;
           transform: translateY(1px);
         }
 				        .hint-button:hover,
+.cancel-button:hover,
         .new-main:hover,
         .new-side:hover,
 		.new-main2:hover,
@@ -20,7 +22,7 @@
         .history-button:hover:not(:disabled) {
           border-radius: var(--radius);
           color: var(--muted);
-          background: var(--surface-2);
+          background: var(--surface-2) !important;
           transition: transform .12s ease, background .14s ease, color .14s ease, box-shadow .14s ease;
         }
 	.pencil-button:hover,
@@ -101,11 +103,12 @@
 .new-main:active,
 .new-main2:active,
 .number-button:active,
+.cancel-button:active,
 .erase-button:active:not([aria-pressed="true"]),
 .menu-item:active,
 .theme-toggle:active,
 .history-button:active:not(:disabled) {
-    background: color-mix(in srgb, var(--blue-soft2) 65%, var(--surface-2));
+    background: color-mix(in srgb, var(--blue-soft2) 65%, var(--surface-2)) !important;
     color: var(--muted);
     transform: translateY(1px);
     border-radius: 999px;
@@ -118,12 +121,6 @@
 	}
 	.delete-button:active {
 		background: color-mix(in srgb, var(--delete-save) 70%, var(--surface-2)) !important
-	}
-	.cancel-button:hover {
-		background: var(--surface-2) !important
-	}
-	.cancel-button:active {
-		background: color-mix(in srgb, var(--surface-2) 70%, var(--surface)) !important
 	}
 
 }
