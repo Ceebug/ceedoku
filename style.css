@@ -1469,6 +1469,10 @@ body.light .whatdoievencallthis {
     	border-radius: 6px
           }
 			.whatdoievencallthis {
-		width: 100%
+		width: 100
+			}
+.sidebar {
+	max-height: unset
+}
 	}
   
