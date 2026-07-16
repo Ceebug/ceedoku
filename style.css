@@ -1353,9 +1353,9 @@ body.light .whatdoievencallthis {
 	}
 	
 	.foo {
-		top: 13px !important;
-		width: 95px !important;
-		right: 22px !important
+		top: 10px !important;
+		width: 48px !important;
+		height: 48px !important;
 	}
 	.difficulty-menu {
 		top: 100%;
@@ -1434,15 +1434,9 @@ body.light .whatdoievencallthis {
 		}
 	#pause-btn {
 		width: 50px;
-		transform: translatey(-5px)translatex(0px)
 		}
 	.bar {
 	width: 45%
-	}
-	#pause-btn {
-	width: 45% !important;
-	height: 42.75 !important;
-	padding: 0 5 0 5
 	}
 	.sidebar{
 		border-top-right-radius: 34px;
