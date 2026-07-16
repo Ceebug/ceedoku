@@ -1162,8 +1162,7 @@ body.light .whatdoievencallthis {
           display: grid;
           gap: 4px;
         }
-//aaaah
-			button {
+		* {
     -webkit-tap-highlight-color: transparent;
     }
         .erase-button[aria-pressed="true"]:hover {
@@ -1190,7 +1189,7 @@ body.light .whatdoievencallthis {
     
         .menu-item[aria-selected="true"] {
           color: var(--blue);
-          background: var(--surface-2);;
+          background: transparent;
         }
     #timer {
     cursor: default;
