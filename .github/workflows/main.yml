@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout game repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Checkout website repo
         uses: actions/checkout@v4
@@ -20,10 +22,11 @@ jobs:
           repository: ceedoku/ceedoku.github.io
           token: ${{ secrets.GITHUB_TOKEN }}
           path: website
+          fetch-depth: 0
 
       - name: Copy game files
         run: |
-          cp index.html script.js style.css manifest.json icon.png website/
+          cp index.html script.js style.css touch.css sw.js manifest.json website/
 
       - name: Create sync commit
         run: |
@@ -32,19 +35,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -A
+          git add index.html script.js style.css touch.css manifest.json
 
           CHANGES=$(git diff --cached --name-only)
 
           if [ -z "$CHANGES" ]; then
-            echo "No changes"
+            echo "No changes to sync"
             exit 0
           fi
 
-          MESSAGE="Sync game from Ceedoku\n\nSynced:\n"
+          MESSAGE="Sync game from Ceedoku"$'\n\n'"Synced:"$'\n'
 
           while IFS= read -r file; do
-            MESSAGE="$MESSAGE- $file\n"
+            MESSAGE="$MESSAGE- $file"$'\n'
           done <<< "$CHANGES"
 
           git commit -m "$MESSAGE"
