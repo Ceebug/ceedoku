@@ -18,7 +18,7 @@
 	let runninggame = false	        
               let menuOpen = false;			  
 					  function showmainmenu() {
-
+mainmenu.inert = false
             mainmenu.hidden = false;
         
             requestAnimationFrame(() => {
@@ -633,7 +633,7 @@ if (runninggame){
         }
 				        function hidemainmenu() {
             mainmenu.classList.remove("show");
-        
+        mainmenu.inert = true
 
         }
                 function hidepausescreen() {
