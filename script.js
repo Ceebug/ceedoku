@@ -389,6 +389,7 @@ function pauseTimer() {
                 for (let i = 0; i < 81; i += 1) {
         
                   const cell = document.createElement("button");
+				  cell.tabIndex = -1;
                   cell.className = "cell";
                   cell.type = "button";
                   cell.dataset.index = String(i);
