@@ -23,9 +23,6 @@
 }
 				        .hint-button:hover,
 .cancel-button:hover,
-        .new-main:hover,
-        .new-side:hover,
-		.new-main2:hover,
         .number-button:hover,
         .menu-item:hover,
         .theme-toggle:hover,
@@ -33,7 +30,16 @@
           border-radius: var(--radius);
           color: var(--muted);
           background: var(--surface-2) !important;
+		  transition: transform .12s ease, background .14s ease, color .14s ease, box-shadow .14s ease;
         }
+
+        .new-main:hover,
+        .new-side:hover,
+		.new-main2:hover {
+          border-radius: var(--radius);
+          color: var(--muted);
+		  transition: transform .12s ease, background .14s ease, color .14s ease, box-shadow .14s ease;
+		}
  .menu-item:hover {
 	 color: var(--text) !important
  }
@@ -125,8 +131,14 @@
     transform: translateY(1px);
     border-radius: 999px;
 }
-
-
+.new-side:active {
+	border-top-right-radius: 0px!important;
+	border-bottom-right-radius: 0px!important
+}
+.new-main:active {
+	border-top-left-radius:0px!important;
+	border-bottom-left-radius:0px!important
+}
 	.delete-button:hover {
 		background: var(--delete-save) !important
 	}
