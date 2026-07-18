@@ -113,6 +113,7 @@
 	.hint-button:active,
 .pencil-button:active:not([aria-pressed="true"]),
 .new-side:active,
+.new-main:active,
 .new-main2:active,
 .number-button:active,
 .cancel-button:active,
@@ -124,18 +125,9 @@
     color: var(--muted);
     transform: translateY(1px);
     border-radius: 999px;
-	border-top-right-radius: 999px !important;
-	border-bottom-right-radius: 999px !important;
 }
-.new-main:active  {
-    background: color-mix(in srgb, var(--blue-soft2) 85%, var(--surface-2)) !important;
-    color: var(--muted);
-    transform: translateY(1px);
-}
-.new-side:active {
-	border-top-left-radius:0px !important;
-	border-bottom-left-radius: 0px !important
-}
+
+
 	.delete-button:hover {
 		background: var(--delete-save) !important
 	}
