@@ -149,5 +149,6 @@
 	.delete-button:active {
 		background: color-mix(in srgb, var(--delete-save) 70%, var(--surface-2)) !important
 	}
-
+.menu-item2[aria-selected="true"]:active {
+    color: var(--blue) !important;
 }
