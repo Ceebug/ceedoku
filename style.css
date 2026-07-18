@@ -966,7 +966,16 @@ body.light .whatdoievencallthis {
           color: var(--text);
           background: var(--surface-2);
         }
-    
+
+.menu-item2[aria-selected=true] {
+	border: 2.5px solid;
+	background: color-mix(in srgb, var(--blue-soft2) 25%, var(--surface-2)) !important;
+}
+.menu-item2[aria-selected=true]:hover {
+	border: 2.5px solid;
+	background: color-mix(in srgb, var(--blue-soft2) 85%, var(--surface-2)) !important;
+	color: var(--blue) !important;
+}
         .hint-button:hover,
         .pencil-button:hover,
         .new-main:hover,
