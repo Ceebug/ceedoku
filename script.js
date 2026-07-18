@@ -1503,7 +1503,7 @@ mainDifficultyMenu.addEventListener("click", (event) => {
 
     if (!item) return;
 
-document.querySelectorAll(".menu-item)").forEach(i => {
+document.querySelectorAll(".menu-item").forEach(i => {
     i.setAttribute("aria-selected", "false");
 });
 
