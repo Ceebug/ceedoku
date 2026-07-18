@@ -1215,7 +1215,7 @@ function forcewin() {
 			  			  			              function closemainDifficultyMenu() {
             newOverlay.hidden = true;
             requestAnimationFrame(() => {
-                newOverlay.classList.add("show");
+                newOverlay.classList.remove("show");
             });
               }
 
