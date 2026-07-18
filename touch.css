@@ -36,10 +36,12 @@
         .new-main:hover,
         .new-side:hover,
 		.new-main2:hover {
-          border-radius: var(--radius);
-          color: var(--muted);
 		  transition: transform .12s ease, background .14s ease, color .14s ease, box-shadow .14s ease;
 		}
+.new-main2:hover {
+		  transition: transform .12s ease, background .14s ease, color .14s ease, box-shadow .14s ease;
+		}
+
  .menu-item:hover {
 	 color: var(--text) !important
  }
@@ -115,10 +117,8 @@
           box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--lime) 68%, transparent);
         }
 
-	.hint-button:active,
+.hint-button:active,
 .pencil-button:active:not([aria-pressed="true"]),
-.new-side:active,
-.new-main:active,
 .new-main2:active,
 .number-button:active,
 .cancel-button:active,
@@ -130,6 +130,13 @@
     color: var(--muted);
     transform: translateY(1px);
     border-radius: 999px;
+}
+
+.new-main:active,
+.new-side:active {
+    background: color-mix(in srgb, var(--blue-soft2) 85%, var(--surface-2)) !important;
+    color: var(--muted);
+    transform: translateY(1px);
 }
 .new-side:active {
 	border-top-right-radius: 0px!important;
