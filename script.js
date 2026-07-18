@@ -1577,28 +1577,7 @@ document.addEventListener("keyup", (event) => {
                   selectCell(nextRow * 9 + nextCol);
                 }
               });   
-			  function forceAriaSelectedFalse() {
-    const menu = document.getElementById("maindifficultyMenu");
-    if (!menu) return;
 
-    const observer = new MutationObserver(() => {
-        menu.querySelectorAll('[aria-selected="true"]').forEach(button => {
-            button.setAttribute("aria-selected", "false");
-        });
-    });
-
-    observer.observe(menu, {
-        subtree: true,
-        attributes: true,
-        attributeFilter: ["aria-selected"]
-    });
-
-    // Also clear any that are already true
-    menu.querySelectorAll('[aria-selected="true"]').forEach(button => {
-        button.setAttribute("aria-selected", "false");
-    });
-}
-forceAriaSelectedFalse();
 function deleteGame() {
 	delsave()
 	location.reload()
