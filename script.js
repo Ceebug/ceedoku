@@ -1184,7 +1184,7 @@ function forcewin() {
         
             requestAnimationFrame(() => {
                 newOverlay.classList.add("show");
-              }
+              });
 			}
 			                function closewinDifficultyMenu() {
                 winmenuOpen = false;
