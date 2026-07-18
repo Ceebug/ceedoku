@@ -18,9 +18,22 @@
 	let runninggame = false	        
               let menuOpen = false;			  
 					  function showmainmenu() {
+						      if (!timerPaused) {
+        // PAUSE
+        timerPaused = true;
+
+        clearInterval(timerId);
+
+        elapsedMs = Date.now() - startTime;
+
+        pauseBtn.textContent = "▶";
+        document.title = "Ceedoku - Paused";
+
+        if (runninggame){saveGame()};
+    }
 mainmenu.inert = false
+						  document.getElementById("mainmenubutton").style.display = "none"
             mainmenu.hidden = false;
-        
             requestAnimationFrame(() => {
                 mainmenu.classList.add("show");
             });
@@ -632,6 +645,7 @@ if (runninggame){
 
         }
 				        function hidemainmenu() {
+			 document.getElementById("mainmenubutton").style.display = ""
             mainmenu.classList.remove("show");
         mainmenu.inert = true
 
