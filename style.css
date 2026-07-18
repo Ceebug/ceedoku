@@ -984,9 +984,12 @@ body.light .whatdoievencallthis {
           background: color-mix(in srgb, var(--blue-soft2) 85%, var(--surface-2));
 	  color: var(--muted);
         }
+body.light .menu-item:hover {
+	color: var(--text) !important
+}
     		.menu-item[aria-selected=true]:hover,
 			    		.menu-item[aria-selected=true]:active {
-          background: color-mix(in srgb, var(--blue-soft2) 65%, var(--surface-2));		
+          background: color-mix(in srgb, var(--blue-soft2) 65%, var(--surface-2)) !important;		
 }		  
         .hint-button:active,
         .pencil-button:active,
