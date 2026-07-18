@@ -116,12 +116,12 @@
                             Erase
                         </button>
                     </div>
-                    <div class="number-grid" id="numberGrid" aria-label="Number pad"><button class="number-button" type="button" data-value="1" aria-label="Use 1">1</button><button class="number-button" type="button" data-value="2" aria-label="Use 2">2</button><button class="number-button" type="button" data-value="3" aria-label="Use 3">3</button><button class="number-button" type="button" data-value="4" aria-label="Use 4">4</button><button class="number-button" type="button" data-value="5" aria-label="Use 5">5</button><button class="number-button" type="button" data-value="6" aria-label="Use 6">6</button><button class="number-button" type="button" data-value="7" aria-label="Use 7">7</button><button class="number-button" type="button" data-value="8" aria-label="Use 8">8</button><button class="number-button" type="button" data-value="9" aria-label="Use 9">9</button></div>
+                    <div class="number-grid" id="numberGrid" aria-label="Number pad"><button class="number-button" type="button" data-value="1" title="Use 1">1</button><button class="number-button" type="button" title="Use 2" data-value="2">2</button><button title="Use 3" class="number-button" type="button" data-value="3" >3</button><button title="Use 4" class="number-button" type="button" data-value="4">4</button><button title="Use 5" class="number-button" type="button" data-value="5">5</button><button title="Use 6" class="number-button" type="button" data-value="6">6</button><button title="Use 7" class="number-button" type="button" data-value="7">7</button><button title="Use 8" class="number-button" type="button" data-value="8">8</button><button title="Use 9" class="number-button" type="button" data-value="9">9</button></div>
 
                 </div>
             </aside>
 <div class="foo" style="display: flex;position: absolute;right: 20px;top: 20px;gap: 10px;">
-<button id="pause-btn" class="hint-button bar" onclick="pauseTimer()" style="justify-self: left;width: 50px;height: 50px;right: 20px;top: 20px;">▶</button>
+<button title="Pause the game." aria-label="Pause the game" d="pause-btn" class="hint-button bar" onclick="pauseTimer()" style="justify-self: left;width: 50px;height: 50px;right: 20px;top: 20px;">▶</button>
 </div>
         </main>
 <div id="winOverlay" class="win-overlay" style="border-radius: 66px;" hidden="">
@@ -286,8 +286,8 @@
             </div>
 
         </div>
-	<div id="sitecontrols" style="z-index: 10000; width: fit-content; position: absolute; top: 0px; right: 0px; background-color: var(--surface); padding: 5px 5px 10px 10px; display: flex; gap: 5px; border-bottom-left-radius: 32px; --darkreader-inline-bgcolor: var(--darkreader-bg--surface, var(--darkreader-background-ffffff, #181a1b));border: 1px solid var(--outline);border-top: 0px;border-right: 0;" data-darkreader-inline-bgcolor=""><button id="mode" class="bar hint-button" onclick="changemode()" style="font-size:22px;width: 50px;height: 50px !important;"><b>☾</b></button>
-<button id="fullscreen" class="bar hint-button" onclick="fullscreen()" style="font-size:18px;width: 50px;height: 50px;padding: 0px;transform: rotate(40deg);">❮ ❯</button>
+	<div id="sitecontrols" style="z-index: 10000; width: fit-content; position: absolute; top: 0px; right: 0px; background-color: var(--surface); padding: 5px 5px 10px 10px; display: flex; gap: 5px; border-bottom-left-radius: 32px;;border: 1px solid var(--outline);border-top: 0px;border-right: 0;"><button id="mode" title="Switch between light and dark mode." aria-label="switch between light and dark mode" class="bar hint-button" onclick="changemode()" style="font-size:22px;width: 50px;height: 50px !important;"><b>☾</b></button>
+<button title="Toggle fullscreen mode." aria-label="toggle fullscreen mode." id="fullscreen" class="bar hint-button" onclick="fullscreen()" style="font-size:18px;width: 50px;height: 50px;padding: 0px;transform: rotate(40deg);">❮ ❯</button>
 
 </div>
 
@@ -297,7 +297,7 @@
 <script id="setver">document.getElementById("version").textContent = `Version: ${version}`;</script>		
 
 <script id="crash-detector">window.addEventListener("error", (event) => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";const error = document.getElementById("crashscreenerrormsg");error.innerHTML = `<strong>A fatal error occurred in the main game script.</strong><br>${event.message} - Line ${event.lineno}, Column ${event.colno}`;});window.addEventListener("unhandledrejection", (event) => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";const error = document.getElementById("crashscreenerrormsg");error.innerHTML = `<strong>An unhandled promise rejection occurred in the main script.</strong><br>${String(event.reason)}`;});document.querySelectorAll("script[src]").forEach(script => {script.addEventListener("error", () => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";document.getElementById("crashscreenerrormsg").innerHTML = `<strong>Failed to load the main game script.</strong>`;});});</script>	
-<script src="script.js"></script>
+<script id="mainscript" src="script.js"></script>
 	
 
 
