@@ -1211,7 +1211,6 @@ body.light .menu-item:hover {
         }
     
         .menu-item[aria-selected="true"] {
-          color: var(--blue);
           background: transparent;
         }
     #timer {
