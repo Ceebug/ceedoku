@@ -13,6 +13,10 @@
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
+let selectedDifficulty = "easy";
+
+    const defaultItem = document.querySelector('#maindifficultyMenu .menu-item[data-difficulty="easy"]');
+    defaultItem.setAttribute("aria-selected", "true");
 document.getElementById("mainmenubutton").style.display = "none"
 			  const mainmenu = document.getElementById("mainmenu");	
 	let runninggame = false	        
@@ -1497,10 +1501,7 @@ winDifficultyMenu.addEventListener("click", (event) => {
     newGame(item.dataset.difficulty);
 
 });
-let selectedDifficulty = "easy";
 
-    const defaultItem = document.querySelector('#maindifficultymenu .menu-item[data-difficulty="easy"]');
-    defaultItem.setAttribute("aria-selected", "true");
     
 mainDifficultyMenu.addEventListener("click", (event) => {
     const item = event.target.closest(".menu-item");
