@@ -48,6 +48,40 @@ if (settings.haptics && "vibrate" in navigator) {
 } else {
     vibrate = function () {};
 }
+let popQueue = Promise.resolve();
+
+function playPop(speed = 2) {
+    popQueue = popQueue.then(() => {
+        return new Promise((resolve) => {
+            if (!settings.SFX) {
+                resolve();
+                return;
+            }
+
+            popSound.currentTime = 0;
+            popSound.playbackRate = speed;
+
+            popSound.play();
+
+            let currentSpeed = speed;
+			const pitchInterval = setInterval(() => {
+    			currentSpeed += 0.05;
+   				popSound.playbackRate = currentSpeed;
+			}, 20);
+
+            pitchInterval = setInterval(() => {
+                currentSpeed += 0.05;
+                popSound.playbackRate = currentSpeed;
+            }, 20);
+
+            popSound.onended = () => {
+                clearInterval(pitchInterval);
+                popSound.playbackRate = 2;
+                resolve();
+            };
+        });
+    });
+}
 document.addEventListener("pointerdown", (event) => {
     const button = event.target.closest("button");
 
@@ -1107,9 +1141,8 @@ function animateIndexes(indexes, origin, kind) {
         //		.catch(err => console.log("audio failed", err));
 		//}
 		if (settings.SFX) {
-    		setTimeout(() => {
-        		const sound = popSound.cloneNode();
-        		sound.play().catch(() => {});
+   	 		setTimeout(() => {
+        		playPop();
     		}, distance * 60);
 		}
         const animationKind =
@@ -1173,10 +1206,9 @@ function animateIndexes(indexes, origin, kind) {
         );
 	
 	    if (settings.SFX) {
-	        setTimeout(() => {
-  	        	const sound = popSound.cloneNode();
- 	            sound.play().catch(() => {});
-        	}, distances[index] * 60);
+			setTimeout(() => {
+		    	playPop(2 + distances[index] * 0.15);
+			}, distances[index] * 60);
  	    }
 
         requestAnimationFrame(() => {
@@ -1223,6 +1255,7 @@ function checkWin() {
     if (finished) return;
 	
     if (values.every((value, index) => value === solution[index])) {
+		popSound.playbackRate = 2;
 		runninggame = false
 		localStorage.removeItem("save");
         finished = true;
