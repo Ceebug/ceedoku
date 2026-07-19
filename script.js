@@ -1711,7 +1711,7 @@ function deleteGame() {
 	location.reload()
 }
 setTimeout(() => {
-    document.body.style.visibility = "visible";
+    document.getElementById("aahtheentiregame").style.visibility = "visible";
 }, 100);
 
 
