@@ -35,7 +35,7 @@
 
 </head>
 
-<body class="dark" style="visibility:hidden">
+<body class="dark" style="visibility:hidden"><h1 style="position: fixed;top: 50%;">Ceedoku is loading...</h1><div id="aahtheentiregame">
 <div class="null"><div class="game-shell" style="padding-top: 20px;">
         <main class="app" aria-label="Ceedoku game">
             <section class="main" style="width: 100%;">
@@ -341,7 +341,7 @@
 <script id="setver">document.getElementById("version").textContent = `Version: ${version}`;</script>		
 
 <script id="crash-detector">window.addEventListener("error", (event) => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";const error = document.getElementById("crashscreenerrormsg");error.innerHTML = `<strong>A fatal error occurred in the main game script.</strong><br>${event.message} - Line ${event.lineno}, Column ${event.colno}`;});window.addEventListener("unhandledrejection", (event) => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";const error = document.getElementById("crashscreenerrormsg");error.innerHTML = `<strong>An unhandled promise rejection occurred in the main script.</strong><br>${String(event.reason)}`;});document.querySelectorAll("script[src]").forEach(script => {script.addEventListener("error", () => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";document.getElementById("crashscreenerrormsg").innerHTML = `<strong>Failed to load the main game script.</strong>`;});});</script>	
-<script id="mainscript" src="script.js"></script>
+<script id="mainscript" src="script.js"></script></div>
 	
 
 
