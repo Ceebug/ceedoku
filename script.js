@@ -1717,10 +1717,20 @@ function deleteGame() {
 	location.reload()
 }
 window.addEventListener("load", () => {
-    document.getElementById("aahtheentiregame").style.visibility = "visible";
-	document.getElementById("loader").style.visibility = "hidden";
-});
+    const game = document.getElementById("aahtheentiregame");
+    const loader = document.getElementById("loader");
 
+    game.style.visibility = "visible";
+    requestAnimationFrame(() => {
+        game.classList.add("loaded");
+    });
+
+    loader.classList.add("fade-out");
+
+    setTimeout(() => {
+        loader.style.visibility = "hidden";
+    }, 500);
+});
 const defaultItem = document.querySelector(`#mainDifficultyMenu .menu-item[data-difficulty="${selectedDifficulty}"]`);
 defaultItem.setAttribute("aria-selected", "true");
 
