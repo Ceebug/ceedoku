@@ -36,6 +36,7 @@ function saveSettings() {
 }
 loadSettings();
 const winSound = new Audio("./sounds/win.ogg");
+const popSound = new Audio("./sounds/pop.ogg");
 let vibrate;
 
 if (settings.haptics && "vibrate" in navigator) {
