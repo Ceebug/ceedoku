@@ -896,17 +896,23 @@ function getCandidates(index) {
 
   const used = new Set();
 
-  for (const i of rows[row]) {
-    if (i !== index && values[i]) used.add(values[i]);
-  }
+for (const i of rows[row]) {
+    if (i !== index && values[i] && values[i] === solution[i]) {
+        used.add(values[i]);
+    }
+}
 
-  for (const i of cols[col]) {
-    if (i !== index && values[i]) used.add(values[i]);
-  }
+for (const i of cols[col]) {
+    if (i !== index && values[i] && values[i] === solution[i]) {
+        used.add(values[i]);
+    }
+}
 
-  for (const i of boxes[box]) {
-    if (i !== index && values[i]) used.add(values[i]);
-  }
+for (const i of boxes[box]) {
+    if (i !== index && values[i] && values[i] === solution[i]) {
+        used.add(values[i]);
+    }
+}
 
   const candidates = [];
 
