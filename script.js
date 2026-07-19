@@ -58,7 +58,6 @@ if (settings.haptics && "vibrate" in navigator) {
 
 let popQueue = Promise.resolve();
 let pitchInterval = null;
-let pitchInterval = null;
 
 function playPop(speed = 2) {
     if (!settings.SFX) return;
