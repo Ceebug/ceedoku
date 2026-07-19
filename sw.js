@@ -3,7 +3,6 @@ const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  './icon.png'
 ];
 
 // Helper function to detect mobile data/metered connections
