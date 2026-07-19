@@ -165,7 +165,8 @@ mainmenu.inert = false
 			let pausemenuOpen = false;
 			let pageMode = localStorage.getItem("theme") || "dark";
               function showWinScreen() {
-						winpauseTimer()
+						winpauseTimer();
+				  		vibrate([20, 50, 40]);
 			if (settings.SFX) {
 				winSound.currentTime = 0;
 				winSound.play().catch(() => {});
@@ -1218,12 +1219,14 @@ function getBoardDistances(startIndex) {
     return distances;
 }
 function checkWin() {
+	
     if (finished) return;
 	
     if (values.every((value, index) => value === solution[index])) {
+		runninggame = false
 		localStorage.removeItem("save");
         finished = true;
-		vibrate([20, 50, 40]);
+
         clearInterval(timerId);
 		
         playBoardRipple();
