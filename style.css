@@ -1333,6 +1333,8 @@ body.light .menu-item:hover {
             grid-template-columns: repeat(9, minmax(30px, 1fr));
           }
         }
+
+	
     
         @media (orientation: portrait) {
           .topbar {
@@ -1432,11 +1434,6 @@ body.light .menu-item:hover {
 	.game-shell {
 		border-radius: 52px;
 	}
-	.something {
-		height: 230px;
-		overflow: scroll;
-		scrollbar-color: transparent transparent;
-	}
 	.main {
 		gap: 5px;
 	}
@@ -1471,9 +1468,6 @@ body.light .menu-item:hover {
           .number-grid {
             grid-template-columns: repeat(5, 1fr);
           }
-			.sidebar {
-	max-height: unset
-}
         }
          .pencilanderaser {
     	display: flex;
@@ -1493,6 +1487,17 @@ body.light .menu-item:hover {
 			.whatdoievencallthis {
 		width: 100
 			}
+
+@media (orientation: portrait) {
+		.something {
+		height: 230px;
+		overflow: scroll;
+		scrollbar-color: transparent transparent;
+	}
+					.sidebar {
+	max-height: unset
+}
+}
 
 	}
   
