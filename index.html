@@ -245,7 +245,7 @@
         <div tabIndex=-1 aria-label="Main Menu" id="mainmenu" class="win-overlay2 show" style="align-items: normal;height: 101dvh;position: absolute;width: 100dvw;background-color: var(--bg);display: flex;flex-direction: column;padding: 20px;justify-content: center;z-index: 4999;"><h3 id="version" style="position: absolute;bottom: 0px;z-index: 9999;margin-bottom: 0px;left: 50dvw;transform: translatex(-50%);"><strong>Version:</strong> *loading*</h3><div class="cmon" style="display: flex;flex-direction: column;align-content: center;"><div style="display:flex;justify-content:center"><img aria-label="Ceedoku Logo" alt="Ceedoku" style="width:90%" class="whatdoievencallthis" src="./title.png" alt="CEEDOKU"></div><div style="margin-top: 20px;"><button title="Open the save stats menu." class="new-main2" id="igiveup" onclick="showcontinueGame()" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;margin-bottom: 5px;">Continue Game</button></div><div title="Open the difficulty menu." style="margin-top: 20px;"><button class="new-main2" onclick="openmainDifficultyMenu()" id="mainDifficultyToggle" type="button" aria-label="Choose difficulty" aria-expanded="false" title="Difficulty" style="width: 100%;border-top-right-radius: 999px;border-bottom-right-radius: 999px;">New Game</button>
                     
 
-                </div></div></div><div aria-label="Crash screen" id="crashscreen" style="visibility:hidden;width: 100dvw;height: 100dvh;position: absolute;background-color: black;z-index: 10000000;display: flex;flex-direction: column;justify-content: center;align-items: center;"><h1 style="font-size: 150px;margin-bottom: 50px;">:(</h1><h1>Ceedoku has crashed</h1><h2 id="crashscreenerrormsg">There was no crash message</h2><button onclick="location.reload()" class="restart-button"><strong>Restart Ceedoku</strong></button></div><div id="newOverlay" class="win-overlay" style="border-radius: 66px;overflow: clip;">
+                </div></div></div><div id="newOverlay" class="win-overlay" style="border-radius: 66px;overflow: clip;">
 
 
             <div class="win-card" aria-label="Difficulty selection screen">
@@ -336,17 +336,14 @@
 </div>
 
 </div>
+</div><div aria-label="Crash screen" id="crashscreen" style="visibility:hidden;width: 100dvw;height: 100dvh;position: absolute;background-color: black;z-index: 10000000;display: flex;flex-direction: column;justify-content: center;align-items: center;"><h1 style="font-size: 150px;margin-bottom: 50px;">:(</h1><h1>Ceedoku has crashed</h1><h2 id="crashscreenerrormsg">There was no crash message</h2><button onclick="location.reload()" class="restart-button"><strong>Restart Ceedoku</strong></button></div>
 <script id="touchormousedetector">const touchStyles = document.getElementById("touchStyles");touchStyles.disabled = !window.matchMedia("(hover: none) and (pointer: coarse)").matches;window.addEventListener("pointermove", (e) => {if (e.pointerType === "mouse") {touchStyles.disabled = true;}});window.addEventListener("pointerdown", (e) => {if (e.pointerType === "touch") {touchStyles.disabled = false;}});</script>
 
 <script id="setver">document.getElementById("version").textContent = `Version: ${version}`;</script>		
 
 <script id="crash-detector">window.addEventListener("error", (event) => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";const error = document.getElementById("crashscreenerrormsg");error.innerHTML = `<strong>A fatal error occurred in the main game script.</strong><br>${event.message} - Line ${event.lineno}, Column ${event.colno}`;});window.addEventListener("unhandledrejection", (event) => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";const error = document.getElementById("crashscreenerrormsg");error.innerHTML = `<strong>An unhandled promise rejection occurred in the main script.</strong><br>${String(event.reason)}`;});document.querySelectorAll("script[src]").forEach(script => {script.addEventListener("error", () => {document.body.style.visibility = "visible";document.getElementById("crashscreen").style.visibility = "visible";document.getElementById("crashscreenerrormsg").innerHTML = `<strong>Failed to load the main game script.</strong>`;});});</script>	
-<script id="mainscript" src="script.js"></script></div>
+<script id="mainscript" src="script.js"></script>
 	
-
-
-
-
 </body>
 
 </html>
