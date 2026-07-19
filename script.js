@@ -110,7 +110,6 @@ mainmenu.inert = false
               let notes = [];
               let selected = 40;
               let difficulty = "easy";
-              document.title = `Ceedoku - ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`;
               let pencilMode = false;
               let eraseMode = false;
               let mistakes = 0;
@@ -1379,8 +1378,7 @@ function newGame(nextDifficulty = difficulty) {
     const built = makePuzzle(DIFFICULTIES[difficulty].holes);
 
     document.title = `Ceedoku - ${difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}`;
-difficultyBadge.textContent = DIFFICULTIES[difficulty].label;
-
+	difficultyBadge.textContent = difficulty.charAt(0).toUpperCase() + difficulty.slice(1)
     solution = built.full;
     puzzle = built.draft;
     values = [...puzzle];	
