@@ -52,22 +52,22 @@ if (settings.haptics && "vibrate" in navigator) {
 
 let popQueue = Promise.resolve();
 let pitchInterval = null;
-
 function playPop(speed = 2) {
     if (!settings.SFX) return;
-
-    // cancel previous sound
-    popSound.pause();
-    popSound.currentTime = 0;
 
     if (pitchInterval) {
         clearInterval(pitchInterval);
         pitchInterval = null;
     }
 
+    popSound.pause();
+    popSound.currentTime = 0;
+
     popSound.playbackRate = speed;
 
-    popSound.play().catch(() => {});
+    popSound.play().catch(err => {
+        console.log("pop failed", err);
+    });
 
     let currentSpeed = speed;
 
@@ -77,11 +77,8 @@ function playPop(speed = 2) {
     }, 20);
 
     popSound.onended = () => {
-        if (pitchInterval) {
-            clearInterval(pitchInterval);
-            pitchInterval = null;
-        }
-
+        clearInterval(pitchInterval);
+        pitchInterval = null;
         popSound.playbackRate = 2;
     };
 }
