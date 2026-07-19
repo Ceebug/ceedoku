@@ -14,6 +14,9 @@
     but it ain't no lie,
     bugs go bye bye bye.
 --------------------------- */
+button {
+	transition: transform 0.1s ease;
+}
 #loader {
     opacity: 1;
     transition: opacity 0.5s ease;
