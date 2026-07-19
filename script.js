@@ -38,12 +38,33 @@ function saveSettings() {
 loadSettings();
 const winSound = new Audio("./sounds/win.ogg");
 const popSound = new Audio("./sounds/pop.ogg");
+
 const audioContext = new AudioContext();
 const popSource = audioContext.createMediaElementSource(popSound);
 const popGain = audioContext.createGain();
 
 popSource.connect(popGain);
 popGain.connect(audioContext.destination);
+let audioUnlocked = false;
+
+function unlockAudio() {
+    if (audioUnlocked) return;
+
+    popSound.muted = true;
+
+    popSound.play()
+        .then(() => {
+            popSound.pause();
+            popSound.currentTime = 0;
+            popSound.muted = false;
+            audioUnlocked = true;
+        })
+        .catch(() => {
+            popSound.muted = false;
+        });
+}
+
+document.addEventListener("pointerdown", unlockAudio, { once: true });
 let vibrate;
 
 if (settings.haptics && "vibrate" in navigator) {
