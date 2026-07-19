@@ -1436,6 +1436,7 @@ body.light .menu-item:hover {
 		height: 230px;
 		overflow: scroll;
 		scrollbar-color: transparent transparent;
+	}
 	.main {
 		gap: 5px;
 	}
@@ -1470,6 +1471,9 @@ body.light .menu-item:hover {
           .number-grid {
             grid-template-columns: repeat(5, 1fr);
           }
+			.sidebar {
+	max-height: unset
+}
         }
          .pencilanderaser {
     	display: flex;
@@ -1489,8 +1493,6 @@ body.light .menu-item:hover {
 			.whatdoievencallthis {
 		width: 100
 			}
-.sidebar {
-	max-height: unset
-}
+
 	}
   
