@@ -35,7 +35,73 @@
 
 </head>
 
-<body class="dark" style="visibility:hidden"><h1 style="position: fixed;top: 50%;">Ceedoku is loading...</h1><div id="aahtheentiregame">
+<body class="dark"><div style="display: flex;flex-direction: column;align-content: center;justify-content: center;position: fixed;justify-items: center;align-items: center;"><style>
+
+.spinner {
+    animation: rotator 1.4s linear infinite;
+}
+
+@keyframes rotator {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(270deg);
+    }
+}
+
+.path {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+
+    animation:
+        dash 1.4s ease-in-out infinite,
+        colors 5.6s ease-in-out infinite;
+}
+
+@keyframes colors {
+    0% {
+        stroke: #7dd3fc;
+    }
+
+    25% {
+        stroke: #38bdf8;
+    }
+
+    50% {
+        stroke: #a78bfa;
+    }
+
+    75% {
+        stroke: #22d3ee;
+    }
+
+    100% {
+        stroke: #7dd3fc;
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 187;
+    }
+
+    50% {
+        stroke-dashoffset: 46.75;
+        transform: rotate(135deg);
+    }
+
+    100% {
+        stroke-dashoffset: 187;
+        transform: rotate(450deg);
+    }
+}
+</style><h1 style="color: #7ca6ee;">Ceedoku is loading</h1><svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66">
+    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30">
+    </circle>
+</svg></div><div id="aahtheentiregame">
 <div class="null"><div class="game-shell" style="padding-top: 20px;">
         <main class="app" aria-label="Ceedoku game">
             <section class="main" style="width: 100%;">
