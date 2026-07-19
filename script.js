@@ -50,6 +50,8 @@ if (settings.haptics && "vibrate" in navigator) {
 }
 let popQueue = Promise.resolve();
 
+let popQueue = Promise.resolve();
+
 function playPop(speed = 2) {
     popQueue = popQueue.then(() => {
         return new Promise((resolve) => {
@@ -61,18 +63,17 @@ function playPop(speed = 2) {
             popSound.currentTime = 0;
             popSound.playbackRate = speed;
 
-            popSound.play();
-
             let currentSpeed = speed;
-			const pitchInterval = setInterval(() => {
-    			currentSpeed += 0.05;
-   				popSound.playbackRate = currentSpeed;
-			}, 20);
 
-            pitchInterval = setInterval(() => {
+            const pitchInterval = setInterval(() => {
                 currentSpeed += 0.05;
                 popSound.playbackRate = currentSpeed;
             }, 20);
+
+            popSound.play().catch(() => {
+                clearInterval(pitchInterval);
+                resolve();
+            });
 
             popSound.onended = () => {
                 clearInterval(pitchInterval);
