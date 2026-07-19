@@ -165,6 +165,11 @@ mainmenu.inert = false
 			let pausemenuOpen = false;
 			let pageMode = localStorage.getItem("theme") || "dark";
               function showWinScreen() {
+						winpauseTimer()
+			if (settings.SFX) {
+				winSound.currentTime = 0;
+				winSound.play().catch(() => {});
+			}
             winDifficulty.textContent =
                 difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
 		
@@ -1218,11 +1223,6 @@ function checkWin() {
     if (values.every((value, index) => value === solution[index])) {
 		localStorage.removeItem("save");
         finished = true;
-		winpauseTimer()
-		if (settings.SFX) {
-		winSound.currentTime = 0;
-		winSound.play().catch(() => {});
-		}
 		vibrate([20, 50, 40]);
         clearInterval(timerId);
 		
