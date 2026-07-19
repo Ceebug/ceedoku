@@ -16,6 +16,7 @@
 let settings = {
     haptics: true,
 	SFX: true,
+	VFX: true,
 	unlimitedhints: true,
 	hintstartnumber: 5,
 	hintcooldowntype: "timer",
