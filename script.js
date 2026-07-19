@@ -1089,11 +1089,16 @@ function animateIndexes(indexes, origin, kind) {
             distance = boardDistances[index];
 
         }
+			console.log("SFX check:", settings.SFX, distance, playedDistances.has(distance));
 		if (settings.SFX && !playedDistances.has(distance)) {
-		    playedDistances.add(distance);
+    		playedDistances.add(distance);
+
+    		console.log("POP", distance);
 
 		    popSound.currentTime = 0;
- 		   popSound.play().catch(() => {});
+    		popSound.play()
+        		.then(() => console.log("played"))
+        		.catch(err => console.log("audio failed", err));
 		}
         const animationKind =
             kind === "board"
