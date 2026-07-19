@@ -50,28 +50,46 @@ if (settings.haptics && "vibrate" in navigator) {
     vibrate = function () {};
 }
 
-function playPop(speed = 2) {
-    if (!settings.SFX) return;
+let popQueue = Promise.resolve();
+let pitchInterval = null;
 
-    const sound = popSound.cloneNode();
+function playPop(speed = 2, duration = 500) {
+    popQueue = popQueue.then(() => {
+        return new Promise((resolve) => {
+            if (!settings.SFX) {
+                resolve();
+                return;
+            }
 
-    sound.currentTime = 0;
-    sound.playbackRate = speed;
+            popSound.currentTime = 0;
+            popSound.playbackRate = speed;
 
-    let currentSpeed = speed;
+            popSound.play().catch(() => {
+                resolve();
+            });
 
-    const pitchInterval = setInterval(() => {
-        currentSpeed += 0.05;
-        sound.playbackRate = currentSpeed;
-    }, 20);
+            let currentSpeed = speed;
 
-    sound.onended = () => {
-        clearInterval(pitchInterval);
-        sound.playbackRate = 2;
-    };
+            pitchInterval = setInterval(() => {
+                currentSpeed += 0.05;
+                popSound.playbackRate = currentSpeed;
+            }, 20);
 
-    sound.play().catch(() => {
-        clearInterval(pitchInterval);
+            setTimeout(() => {
+                clearInterval(pitchInterval);
+                pitchInterval = null;
+
+                popSound.playbackRate = 2;
+            }, duration);
+
+            popSound.onended = () => {
+                clearInterval(pitchInterval);
+                pitchInterval = null;
+
+                popSound.playbackRate = 2;
+                resolve();
+            };
+        });
     });
 }
 document.addEventListener("pointerdown", (event) => {
@@ -1077,7 +1095,7 @@ function hint() {
               }
         
 function animateIndexes(indexes, origin, kind) {
-		const playedDistances = new Set();
+		const distancesPlayed = new Set();
     	const boardDistances =
         	kind === "board"
             	? getBoardDistances(origin)
@@ -1088,7 +1106,8 @@ function animateIndexes(indexes, origin, kind) {
             	: 8;
 
     	const fadeDelay = maxDistance * 60 + 500;
-
+		const distancesPlayed = new Set();
+	
     	indexes.forEach((index) => {
 
         const cell = boardEl.querySelector(`[data-index="${index}"]`);
@@ -1121,7 +1140,15 @@ function animateIndexes(indexes, origin, kind) {
             distance = boardDistances[index];
 
         }
-			console.log("SFX check:", settings.SFX, distance, playedDistances.has(distance));
+		if (!distancesPlayed.has(distance)) {
+            distancesPlayed.add(distance);
+
+            if (settings.SFX) {
+                setTimeout(() => {
+                    playPop(2 + distance * 0.15);
+                }, distance * 60);
+            }
+        }
 		// if (settings.SFX && !playedDistances.has(distance)) {
     	//	playedDistances.add(distance);
 
