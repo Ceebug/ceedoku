@@ -13,10 +13,28 @@
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
-const settings = {
-    haptics: true
+let settings = {
+    haptics: true,
+	SFX: true,
+	unlimitedhints: true,
+	hintstartnumber: 5,
+	hintcooldowntype: "timer",
+	/* Cooldown time in seconds */
+	hintcooldowntime: 60,
+	hintcooldownmoves: 5
 };
-const SFX = true;
+function loadSettings() {
+    const saved = localStorage.getItem("settings");
+
+    if (saved) {
+        Object.assign(settings, JSON.parse(saved));
+    }
+}
+
+function saveSettings() {
+    localStorage.setItem("settings", JSON.stringify(settings));
+}
+loadSettings();
 const winSound = new Audio("./sounds/win.ogg");
 let vibrate;
 
@@ -1178,7 +1196,7 @@ function checkWin() {
 		localStorage.removeItem("save");
         finished = true;
 		winpauseTimer()
-		if (SFX) {
+		if (settings.SFX) {
 		winSound.currentTime = 0;
 		winSound.play().catch(() => {});
 		}
