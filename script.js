@@ -1085,7 +1085,7 @@ function hint() {
               }
         
 function animateIndexes(indexes, origin, kind) {
-	if (!settings.VFX) return;
+	if (settings.VFX) return;
 		const playedDistances = new Set();
 		const distancesPlayed = new Set();
     	const boardDistances =
@@ -1206,7 +1206,7 @@ function animateIndexes(indexes, origin, kind) {
                 });
               }
 			  function playBoardRipple() {
-				  if (!settings.VFX) return;
+				  if (settings.VFX) return;
     const distances = getBoardDistances(selected);
 
     boardEl.querySelectorAll(".cell").forEach((cell, index) => {
