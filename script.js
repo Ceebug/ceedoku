@@ -13,6 +13,34 @@
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
+const count = 150,
+  defaults = { origin: { y: .7 } };
+
+function fire(particleRatio, opts) {
+  confetti(Object.assign({}, defaults, opts, { particleCount: Math.floor(count * particleRatio) }));
+}
+function confetti {
+	fire(.25, {
+  spread: 26,
+  startVelocity: 55
+});
+fire(.2, { spread: 60 });
+fire(.35, {
+  spread: 100,
+  decay: .91,
+  scalar: .8
+});
+fire(.1, {
+  spread: 120,
+  startVelocity: 25,
+  decay: .92,
+  scalar: 1.2
+});
+fire(.1, {
+  spread: 120,
+  startVelocity: 45
+});
+}
 let settings = {
     SFX: {
         enabled: true,
@@ -274,9 +302,15 @@ mainmenu.inert = false
             winMistakes.textContent = mistakes;
             winOverlay.hidden = false;
         
-            requestAnimationFrame(() => {
-                winOverlay.classList.add("show");
-            });
+    		requestAnimationFrame(() => {
+        		winOverlay.classList.add("show");
+    		});
+
+    		winOverlay.addEventListener("animationend", () => {
+        		if (settings.VFX.enabled && settings.VFX.confetti) {
+            		confetti();
+        		}
+    		}, { once: true });
         }
 			function showPauseScreen() {
             pauseDifficulty.textContent =
@@ -758,44 +792,21 @@ if (runninggame){
                 });
                 return indexes;
               }
-const count = 150,
-  defaults = { origin: { y: .7 } };
 
-function fire(particleRatio, opts) {
-  confetti(Object.assign({}, defaults, opts, { particleCount: Math.floor(count * particleRatio) }));
-}
-function confetti {
-	fire(.25, {
-  spread: 26,
-  startVelocity: 55
-});
-fire(.2, { spread: 60 });
-fire(.35, {
-  spread: 100,
-  decay: .91,
-  scalar: .8
-});
-fire(.1, {
-  spread: 120,
-  startVelocity: 25,
-  decay: .92,
-  scalar: 1.2
-});
-fire(.1, {
-  spread: 120,
-  startVelocity: 45
-});
-}
-        function showWinScreen() {
-
+              function showWinScreen() {
+						winpauseTimer();
+				  		vibrate([20, 50, 40]);
+			if (settings.SFX.enabled && settings.SFX.win) {
+				winSound.currentTime = 0;
+				winSound.play().catch(() => {});
+			}
             winDifficulty.textContent =
                 difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
-        
-            winTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+		
+			
             winMistakes.textContent = mistakes;
-        
             winOverlay.hidden = false;
-        	
+        
     		requestAnimationFrame(() => {
         		winOverlay.classList.add("show");
     		});
