@@ -207,7 +207,7 @@ font-size: clamp(1.20rem, 5vw, 2.5rem)
     
         text-align: center;
     
-        transform: scale(.9) translateY(20px);
+        transform: translateY(20px);
         opacity: 0;
     
         transition:
@@ -1032,7 +1032,7 @@ body.light .menu-item:hover {
 		.cancel-button:active
         .theme-toggle:active,
         .history-button:active:not(:disabled) {
-          transform: translateY(1px) scale(0.98)
+          transform: translateY(1px)
         }
 	.disabled {
 		          transform: translateY(0px);
