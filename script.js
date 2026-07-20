@@ -1827,6 +1827,8 @@ function deleteGame() {
 	delsave()
 	location.reload()
 }
+const defaultItem = document.querySelector(`#mainDifficultyMenu .menu-item[data-difficulty="${selectedDifficulty}"]`);
+defaultItem.setAttribute("aria-selected", "true");
 window.addEventListener("load", () => {
     const game = document.getElementById("aahtheentiregame");
     const loader = document.getElementById("loader");
@@ -1842,6 +1844,3 @@ window.addEventListener("load", () => {
         loader.style.visibility = "hidden";
     }, 500);
 });
-const defaultItem = document.querySelector(`#mainDifficultyMenu .menu-item[data-difficulty="${selectedDifficulty}"]`);
-defaultItem.setAttribute("aria-selected", "true");
-
