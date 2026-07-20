@@ -19,7 +19,7 @@ const count = 150,
 function fire(particleRatio, opts) {
   confetti(Object.assign({}, defaults, opts, { particleCount: Math.floor(count * particleRatio) }));
 }
-function confetti {
+function confetti() {
 	fire(.25, {
   spread: 26,
   startVelocity: 55
