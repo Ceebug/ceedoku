@@ -61,8 +61,7 @@ let settings = {
             startinghints: 3,
             cooldowntype: "time",
             // Cooldown time in seconds
-            cooldowntime: 60,
-            cooldownmoves: 5
+            cooldowntime: 30,
         }
     },
 
@@ -330,7 +329,7 @@ mainmenu.inert = false
         !settings.hints.enabled;
 
     startingHintsInput.disabled =
-        !settings.hints.enabled;
+        !settings.hints.cooldown.enabled;
 
     hintCooldownMethod.disabled =
         !settings.hints.enabled ||
@@ -353,8 +352,64 @@ animationToggle.addEventListener("change", () => {
     saveSettings();
     updateSettingsMenu();
 });
+    completionAnimationToggle.addEventListener("change", () => {
+    settings.VFX.completion = completionAnimationToggle.checked;
+    saveSettings();
+    updateSettingsMenu();
+});
+    confettiAnimationToggle.addEventListener("change", () => {
+    settings.VFX.confetti = confettiAnimationToggle.checked;
+    saveSettings();
+    updateSettingsMenu();
+});
+sfxToggle.addEventListener("change", () => {
+    settings.SFX.enabled = sfxToggle.checked;
 
-        
+    if (!settings.SFX.enabled) {
+        settings.SFX.completion = false;
+        settings.SFX.win = false;
+    }
+
+    saveSettings();
+    updateSettingsMenu();
+});
+winSoundToggle.addEventListener("change", () => {
+	settings.SFX.win = winSoundToggle.checked;
+	saveSettings();
+	updateSettingsMenu();
+}
+completionSoundToggle.addEventListener("change", () => {
+	settings.SFX.win = completionSoundToggle.checked;
+	saveSettings();
+	updateSettingsMenu();
+}
+hapticsToggle.addEventListener("change", () => {
+    settings.haptics.enabled = hapticsToggle.checked;
+
+    if (!settings.SFX.enabled) {
+        settings.haptics.cells = false;
+        settings.haptics.buttons = false;
+		settings.haptics.puzzlecomplete = false;
+    }
+
+    saveSettings();
+    updateSettingsMenu();
+});
+buttonHapticsToggle.addEventListener("change", () => {
+	settings.haptics.button = buttonHapticsToggle.checked;
+	saveSettings();
+	updateSettingsMenu();
+}
+cellHapticsToggle.addEventListener("change", () => {
+	settings.haptics.cell = cellHapticsToggle.checked;
+	saveSettings();
+	updateSettingsMenu();
+}
+winHapticsToggle.addEventListener("change", () => {
+	settings.haptics.puzzlecomplete = winHapticsToggle.checked;
+	saveSettings();
+	updateSettingsMenu();
+}
               let solution = [];
               let puzzle = [];
               let values = [];
