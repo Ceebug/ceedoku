@@ -377,12 +377,12 @@ winSoundToggle.addEventListener("change", () => {
 	settings.SFX.win = winSoundToggle.checked;
 	saveSettings();
 	updateSettingsMenu();
-}
+})
 completionSoundToggle.addEventListener("change", () => {
 	settings.SFX.win = completionSoundToggle.checked;
 	saveSettings();
 	updateSettingsMenu();
-}
+})
 hapticsToggle.addEventListener("change", () => {
     settings.haptics.enabled = hapticsToggle.checked;
 
@@ -399,17 +399,17 @@ buttonHapticsToggle.addEventListener("change", () => {
 	settings.haptics.button = buttonHapticsToggle.checked;
 	saveSettings();
 	updateSettingsMenu();
-}
+})
 cellHapticsToggle.addEventListener("change", () => {
 	settings.haptics.cell = cellHapticsToggle.checked;
 	saveSettings();
 	updateSettingsMenu();
-}
+})
 winHapticsToggle.addEventListener("change", () => {
 	settings.haptics.puzzlecomplete = winHapticsToggle.checked;
 	saveSettings();
 	updateSettingsMenu();
-}
+})
               let solution = [];
               let puzzle = [];
               let values = [];
