@@ -426,7 +426,8 @@ hintCooldownToggle.addEventListener("change", () => {
 	updateSettingsMenu();
 });
 startingHintsInput.addEventListener("change", () => {
-	settings.hints.cooldown.startinghints === "" ? 3 : Number(startingHintsInput.value);
+	settings.hints.cooldown.startinghints =
+    startingHintsInput.value === "" ? 3 : Number(startingHintsInput.value);
 	saveSettings();
 	updateSettingsMenu()
 });
