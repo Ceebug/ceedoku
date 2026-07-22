@@ -1322,6 +1322,7 @@ if (hintcount === 0 && settings.hints.cooldown.enabled) {
 }
 
 function hint() {
+  updateHintCooldownDisplay();
   if (!settings.hints.enabled) return;
   if (hintcount <= 0 && settings.hints.cooldown.enabled) return;
   if (finished) return;
