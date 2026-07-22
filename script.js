@@ -427,12 +427,12 @@ hintsCooldownToggle.addEventListener("change", () => {
 startingHintsInput.addEventListener("change", () => {
 	settings.hints.cooldown.startinghints = Number(startingHintsInput.value);
 	saveSettings();
-	updateSettingsMenu():
+	updateSettingsMenu()
 }
 hintCooldownMethod.addEventListener("change", () => {
 	settings.hints.cooldown.cooldowntype = hintCooldownMethod.value
 	saveSettings();
-	updateSettingsMenu():
+	updateSettingsMenu()
 }
               let solution = [];
               let puzzle = [];
