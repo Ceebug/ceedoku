@@ -14,6 +14,9 @@
     but it ain't no lie,
     bugs go bye bye bye.
 --------------------------- */
+#fullscreen:active {
+	transform: translatey(1px)
+}
 select:disabled {
 	color: var(--muted) !important;
 	cursor: not-allowed !important;
@@ -1666,14 +1669,14 @@ body.light .menu-item:hover {
 			}
 
 @media (orientation: portrait) {
-		.something {
+	.something {
 		height: 230px;
 		overflow: scroll;
 		scrollbar-color: transparent transparent;
 	}
-					.sidebar {
-	max-height: unset
-}
+	.sidebar {
+		max-height: unset
+	}
 }
 
 	}
