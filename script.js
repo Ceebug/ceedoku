@@ -1382,7 +1382,7 @@ function hint() {
   checkWin();
 }
 function starthintcooldown() {
-	if (settings.hints.cooldown.cooldowntype === "moves") {
+	if (settings.hints.cooldown.cooldowntype === "move") {
     	cooldownmoves = settings.hints.cooldown.amount;	
 	}
 	if (settings.hints.cooldown.cooldowntype === "time") {
@@ -1394,7 +1394,7 @@ function getHintCooldownText() {
         return `${hintcount} hint${hintcount === 1 ? "" : "s"}`;
     }
 
-    if (settings.hints.cooldown.cooldowntype === "moves") {
+    if (settings.hints.cooldown.cooldowntype === "move") {
         return `${cooldownmoves} move${cooldownmoves === 1 ? "" : "s"}`;
     }
 
