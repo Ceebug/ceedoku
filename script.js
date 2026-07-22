@@ -60,7 +60,6 @@ let settings = {
             enabled: false,
             startinghints: 3,
             cooldowntype: "time",
-            // Cooldown time in seconds
             cooldowntime: 30,
         }
     },
@@ -410,6 +409,31 @@ winHapticsToggle.addEventListener("change", () => {
 	saveSettings();
 	updateSettingsMenu();
 })
+hintsToggle.addEventListener("change", () => {
+	settings.hints.enabled = hintsToggle.checked;
+
+	if (!settings.hints.enabled) {
+        settings.hints.cooldown.enabled = false;
+	}
+	
+	saveSettings();
+	updateSettingsMenu();
+})
+hintsCooldownToggle.addEventListener("change", () => {
+	settings.hints.cooldown.enabled = hintsCooldownToggle.checked;
+	saveSettings();
+	updateSettingsMenu();
+})
+startingHintsInput.addEventListener("change", () => {
+	settings.hints.cooldown.startinghints = Number(startingHintsInput.value);
+	saveSettings();
+	updateSettingsMenu():
+}
+hintCooldownMethod.addEventListener("change", () => {
+	settings.hints.cooldown.cooldowntype = hintCooldownMethod.value
+	saveSettings();
+	updateSettingsMenu():
+}
               let solution = [];
               let puzzle = [];
               let values = [];
