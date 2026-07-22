@@ -14,7 +14,10 @@
     but it ain't no lie,
     bugs go bye bye bye.
 --------------------------- */
-#fulscreen {
+.hint-wrap {
+	max-height: 44px
+}
+#fullscreen {
 	transform: rotate(40deg)
 }
 #fullscreen:active {
