@@ -210,6 +210,8 @@ mainmenu.inert = false
  			 	  extreme: { holes: 70 },
    			  	  impossible: { holes: 76 }
 			  };
+			  const hintcooldowndisplay = document.getElementById("hintCooldownDisplay")
+
               const boardEl = document.getElementById("board");
 			  
               const winOverlay = document.getElementById("winOverlay");			  
@@ -267,7 +269,6 @@ mainmenu.inert = false
 	          const newoverlay = document.getElementById("newOverlay")
 
 			  const settingsOverlay = document.getElementById("settingsOverlay")
-
 
 			  const animationToggle = document.getElementById("animationtoggle");
 			  const completionAnimationToggle = document.getElementById("completionanimationtoggle");
@@ -439,6 +440,16 @@ hintCooldownAmount.addEventListener("change", () => {
 	saveSettings();
 	updateSettingsMenu()
 });
+
+function updateHintCooldownDisplay() {
+    if (!settings.hints.cooldown.enabled) {
+        hintCooldownDisplay.textContent = "∞";
+        hintCooldownDisplay.style.fontWeight = "800";
+    } else {
+        hintCooldownDisplay.style.fontWeight = "unset";
+        hintCooldownDisplay.textContent = getHintCooldownText();
+    }
+}
               let solution = [];
               let puzzle = [];
               let values = [];
@@ -1089,6 +1100,15 @@ if (runninggame){
                 paintBoard();
                 animateNewCompletions(previousCompleted, selected);
                 checkWin();
+				if (cooldown.moves > 0) {
+    				cooldown.moves--;
+
+    				if (cooldown.moves === 0) {
+        				hintcount = 1;
+        				enableHintButton();
+        				updateHintCooldownDisplay();
+    				}
+				}
               }
         
               function eraseSelected() {
@@ -1293,8 +1313,14 @@ function testHintButton() {
         enableHintButton();
     }
 }
-let hintcount = settings.hints.cooldown.startinghints
+
 testHintButton();
+
+let hintcount = settings.hints.cooldown.startinghints
+if (hintcount === 0 && settings.hints.cooldown.enabled) {
+    startHintCooldown();
+}
+
 function hint() {
   if (!settings.hints.enabled) return;
   if (hintcount <= 0 && settings.hints.cooldown.enabled) return;
@@ -1324,7 +1350,7 @@ function hint() {
 
   // No logical move found
   if (!move) return;
-  hintcount--;
+  if (settings.hints.cooldown.enabled) {hintcount--; if (hintcount <= 0){starthintcooldown()}}
   const target = move.index;
   selected = target;
 
@@ -1347,7 +1373,45 @@ function hint() {
   animateNewCompletions(previousCompleted, selected);
   checkWin();
 }
-             
+function starthintcooldown() {
+	if (settings.hints.cooldown.method === "moves") {
+    	cooldown.moves = settings.hints.cooldown.amount;	
+	}
+	if (settings.hints.cooldown.method === "time") {
+    	console.log("uuuuuh this will exist soon i promise")
+	}
+}
+function getHintCooldownText() {
+    if (hintcount > 0) {
+        return `${hintcount} hint${hintcount === 1 ? "" : "s"}`;
+    }
+
+    if (settings.hints.cooldown.method === "moves") {
+        return `${cooldown.moves} move${cooldown.moves === 1 ? "" : "s"}`;
+    }
+
+    if (settings.hints.cooldown.method === "time") {
+        return `${cooldown.seconds} sec${cooldown.seconds === 1 ? "" : "s"}`;
+    }
+
+    return "Pls hold...";
+}
+function updateHintCooldownDisplay() {
+    if (!settings.hints.enabled) {
+        hintcooldowndisplay.textContent = "Disabled";
+        return;
+    }
+
+    if (!settings.hints.cooldown.enabled) {
+        hintcooldowndisplay.textContent = "∞";
+        hintcooldowndisplay.style.fontWeight = "800";
+        return;
+    }
+
+    hintcooldowndisplay.style.fontWeight = "unset";
+    hintcooldowndisplay.textContent = getHintCooldownText();
+}
+updateHintCooldownDisplay();
         
               function updateHistoryButtons() {
                 undoButton.disabled = undoStack.length === 0;
@@ -1440,7 +1504,7 @@ function animateIndexes(indexes, origin, kind) {
     			distancesPlayed.add(distance);
 
     			setTimeout(() => {
-        		playPop(Math.min(2 + distance * 0.5));
+        		playPop(Math.min(1 + distance * 0.5));
     			}, distance * 60);
 			}
 		}
@@ -1507,7 +1571,7 @@ function playBoardRipple() {
                 distancesPlayed.add(distance);
 
                 setTimeout(() => {
-                    playPop(Math.min(2 + distance * 0.25));
+                    playPop(Math.min(1 + distance * 0.25));
                 }, distance * 60);
             }
         }
@@ -1753,6 +1817,7 @@ loadgame();
 loadtheme();		
 			
 function continueGame() {
+updateHintCooldownDisplay();
 runninggame = true;
 hidemainmenu();
     pauseBtn.textContent = "❚❚"; 
@@ -1777,6 +1842,8 @@ hidemainmenu();
 setInterval(saveGame, 1000);
 
 function newGame(nextDifficulty = difficulty) {
+	updateHintCooldownDisplay();
+	cooldown.moves = settings.hints.cooldown.cooldowntime;
 	localStorage.setItem("difficulty", difficulty);
     runninggame = true
 	finished = false
