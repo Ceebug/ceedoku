@@ -1100,9 +1100,9 @@ if (runninggame){
                 paintBoard();
                 animateNewCompletions(previousCompleted, selected);
                 checkWin();
-				if (cooldownmoves > 0) {
+				if (!options.fromHistory && cooldownmoves > 0) {
     				cooldownmoves--;
-
+					updateHintCooldownDisplay();
     				if (cooldownmoves === 0) {
         				hintcount = 1;
         				enableHintButton();
@@ -1351,7 +1351,13 @@ function hint() {
 
   // No logical move found
   if (!move) return;
-  if (settings.hints.cooldown.enabled) {hintcount--; if (hintcount <= 0){starthintcooldown()}}
+  if (settings.hints.cooldown.enabled) {
+      hintcount--;
+      if (hintcount <= 0) {
+          starthintcooldown();
+      }
+      updateHintCooldownDisplay();
+  }
   const target = move.index;
   selected = target;
 
