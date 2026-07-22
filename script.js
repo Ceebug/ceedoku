@@ -419,18 +419,23 @@ hintsToggle.addEventListener("change", () => {
 	saveSettings();
 	updateSettingsMenu();
 });
-hintsCooldownToggle.addEventListener("change", () => {
-	settings.hints.cooldown.enabled = hintsCooldownToggle.checked;
+hintCooldownToggle.addEventListener("change", () => {
+	settings.hints.cooldown.enabled = hintCooldownToggle.checked;
 	saveSettings();
 	updateSettingsMenu();
 });
 startingHintsInput.addEventListener("change", () => {
-	settings.hints.cooldown.startinghints = Number(startingHintsInput.value);
+	settings.hints.cooldown.startinghints === "" ? 3 : Number(startingHintsInput.value);
 	saveSettings();
 	updateSettingsMenu()
 });
 hintCooldownMethod.addEventListener("change", () => {
-	settings.hints.cooldown.cooldowntype = hintCooldownMethod.value
+	settings.hints.cooldown.cooldowntype = hintCooldownMethod.value 
+	saveSettings();
+	updateSettingsMenu()
+});
+hintCooldownAmount.addEventListener("change", () => {
+	settings.hints.cooldown.cooldowntime = Number(hintCooldownAmount.value) || 30;
 	saveSettings();
 	updateSettingsMenu()
 });
