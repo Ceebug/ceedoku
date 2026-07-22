@@ -386,12 +386,12 @@ completionSoundToggle.addEventListener("change", () => {
 hapticsToggle.addEventListener("change", () => {
     settings.haptics.enabled = hapticsToggle.checked;
 
-    if (!settings.SFX.enabled) {
+    if (!settings.haptics.enabled) {
         settings.haptics.cells = false;
         settings.haptics.buttons = false;
 		settings.haptics.puzzlecomplete = false;
     }
-
+	
     saveSettings();
     updateSettingsMenu();
 });
