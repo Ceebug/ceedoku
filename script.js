@@ -494,6 +494,8 @@ function updateHintCooldownDisplay() {
             		fireconfetti();
         		}
 			}, 200); 
+
+			  }
 function opensettingsmenu() {
     document.getElementById("settingsOverlay").classList.add("show");
 }
