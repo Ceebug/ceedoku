@@ -1100,10 +1100,10 @@ if (runninggame){
                 paintBoard();
                 animateNewCompletions(previousCompleted, selected);
                 checkWin();
-				if (cooldown.moves > 0) {
-    				cooldown.moves--;
+				if (cooldownmoves > 0) {
+    				cooldownmoves--;
 
-    				if (cooldown.moves === 0) {
+    				if (cooldownmoves === 0) {
         				hintcount = 1;
         				enableHintButton();
         				updateHintCooldownDisplay();
@@ -1375,7 +1375,7 @@ function hint() {
 }
 function starthintcooldown() {
 	if (settings.hints.cooldown.method === "moves") {
-    	cooldown.moves = settings.hints.cooldown.amount;	
+    	cooldownmoves = settings.hints.cooldown.amount;	
 	}
 	if (settings.hints.cooldown.method === "time") {
     	console.log("uuuuuh this will exist soon i promise")
@@ -1387,7 +1387,7 @@ function getHintCooldownText() {
     }
 
     if (settings.hints.cooldown.method === "moves") {
-        return `${cooldown.moves} move${cooldown.moves === 1 ? "" : "s"}`;
+        return `${cooldownmoves} move${cooldownmoves === 1 ? "" : "s"}`;
     }
 
     if (settings.hints.cooldown.method === "time") {
@@ -1843,7 +1843,7 @@ setInterval(saveGame, 1000);
 
 function newGame(nextDifficulty = difficulty) {
 	updateHintCooldownDisplay();
-	cooldown.moves = settings.hints.cooldown.cooldowntime;
+	cooldownmoves = settings.hints.cooldown.cooldowntime;
 	localStorage.setItem("difficulty", difficulty);
     runninggame = true
 	finished = false
