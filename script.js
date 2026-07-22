@@ -13,6 +13,8 @@
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
+let cooldownmoves = 0
+let cooldowntime = 0
 const count = 150,
   defaults = { origin: { y: .7 } };
 
