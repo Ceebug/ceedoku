@@ -489,13 +489,11 @@ function updateHintCooldownDisplay() {
     		requestAnimationFrame(() => {
         		winOverlay.classList.add("show");
     		});
-
-    		winOverlay.addEventListener("animationend", () => {
+			setTimeout(() => {
         		if (settings.VFX.enabled && settings.VFX.confetti) {
             		fireconfetti();
         		}
-    		}, { once: true });
-        }
+			}, 200); 
 function opensettingsmenu() {
     document.getElementById("settingsOverlay").classList.add("show");
 }
