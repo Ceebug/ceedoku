@@ -614,6 +614,12 @@ if (solution.length !== 81){localStorage.removeItem("save");nosave=true;updateGi
 		cooldowntypetouse = game.cooldowntypetouse;
 		savecooldownmoves = game.cooldownmoves;
 		savecooldowntime = game.cooldowntime
+	} else if (game.cooldowntypetouse == settings.hints.cooldown.cooldowntype) {
+		savehintcount = game.hintcount;
+		canusecurrenthintsystem = true;
+		cooldowntypetouse = game.cooldowntypetouse;
+		savecooldownmoves = game.cooldownmoves
+		savecooldowntime = game.cooldowntime
 	}
 	
     // ---------------- TIMER ----------------
@@ -1942,6 +1948,7 @@ hidemainmenu();
 setInterval(saveGame, 1000);
 
 function newGame(nextDifficulty = difficulty) {
+	nosave = false
 	cooldowntypetouse = settings.hints.cooldown.cooldowntype
 	usingsavegame = false;
 	cooldownmoves = 0;
