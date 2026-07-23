@@ -607,6 +607,7 @@ if (solution.length !== 81){localStorage.removeItem("save");nosave=true;updateGi
 	
 	if (game.cooldowntypetouse === undefined) {
 		hintcount = settings.hints.cooldown.startinghints;
+		savehintcount = settings.hints.cooldown.startinghints;
 		canusecurrenthintsystem = true
 	} else if (game.cooldowntypetouse !== settings.hints.cooldown.cooldowntype) {
 		canusecurrenthintsystem = false;
@@ -1409,11 +1410,6 @@ function testHintButton() {
 
 testHintButton();
 
-
-if (hintcount === 0 && settings.hints.cooldown.enabled) {
-    startHintCooldown();
-}
-
 function hint() {
   updateHintCooldownDisplay();
   if (!settings.hints.enabled) return;
@@ -1447,8 +1443,10 @@ function hint() {
   if (settings.hints.cooldown.enabled) {
       hintcount--;
       if (hintcount <= 0) {
-		  canusecurrenthintsystem = true
+		  canusecurrenthintsystem = true;
+		  cooldowntypetouse = settings.hints.cooldown.cooldowntype
           starthintcooldown();
+		  savegame();
       }
       updateHintCooldownDisplay();
   }
@@ -1922,6 +1920,9 @@ if (savehintcount > 0) {
 	cooldowntime = 0
 	cooldownmoves = 0
 	canusecurrenthintsystem = true
+} else {
+	hintcount = 0;
+	starthintcooldown()
 }
 updateHintCooldownDisplay();
 runninggame = true;
