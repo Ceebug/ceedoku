@@ -13,7 +13,7 @@
  * Let's keep it that way.
  * If it ain't broke, don't fix it. It WILL break.
  ******************************************************************************/
-let hintcount = settings.hints.cooldown.startinghints
+
 let canusecurrenthintsystem = false
 let usingsavegame = false
 let cooldownmoves = 0
@@ -88,6 +88,7 @@ function saveSettings() {
     localStorage.setItem("settings", JSON.stringify(settings));
 }
 loadSettings();
+let hintcount = settings.hints.cooldown.startinghints
 const winSound = new Audio("./sounds/win.ogg");
 const popSound = new Audio("./sounds/pop.ogg");
 
