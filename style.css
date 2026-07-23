@@ -18,6 +18,15 @@
 	background-color: var(--disabledbox) !important;
 	cursor: not-allowed !important
 }
+#hintCooldownDisplay {
+	z-index: 2
+}
+#hintButton {
+	z-index: 1
+}
+#hintButton:disabled:active {
+	transform: none !important
+}
 .hint-wrap {
 	max-height: 44px
 }
