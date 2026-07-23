@@ -693,20 +693,44 @@ let elapsedMs = 0;
 let startTime = 0;
 let timerId = null;
 let timerPaused = false;
-			function startTimer() {
+let hintCooldownCounter = 0;
+
+function startTimer() {
     clearInterval(timerId);
 
     startTime = Date.now() - elapsedMs;
 
     timerId = setInterval(() => {
         elapsedMs = Date.now() - startTime;
-		winTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
-		pauseTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
-		continueTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+
+        winTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+        pauseTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+        continueTime.textContent = formatTime(Math.floor(elapsedMs / 1000));
+
         timerEl.textContent =
             `Time: ${formatTime(Math.floor(elapsedMs / 1000))}`;
+
+        hintCooldownCounter++;
+
+        if (hintCooldownCounter >= 10) {
+            hintCooldownCounter = 0;
+
+            if (
+                settings.hints.cooldown.enabled &&
+                settings.hints.cooldown.cooldowntype === "time" &&
+                cooldowntime > 0
+            ) {
+                cooldowntime--;
+
+                if (cooldowntime === 0) {
+                    hintcount++;
+                }
+
+                updateHintCooldownDisplay();
+            }
+        }
     }, 100);
-};
+}
 function pauseTimer() {
     if (!timerPaused) {
         // PAUSE
@@ -1384,12 +1408,15 @@ function hint() {
   checkWin();
 }
 function starthintcooldown() {
-	if (settings.hints.cooldown.cooldowntype === "move") {
-    	cooldownmoves = settings.hints.cooldown.cooldowntime;	
-	}
-	if (settings.hints.cooldown.cooldowntype === "time") {
-    	console.log("uuuuuh this will exist soon i promise")
-	}
+    if (settings.hints.cooldown.cooldowntype === "move") {
+        cooldownmoves = settings.hints.cooldown.cooldowntime;
+    }
+
+    if (settings.hints.cooldown.cooldowntype === "time") {
+        cooldowntime = settings.hints.cooldown.cooldowntime;
+        hintCooldownCounter = 0;
+        updateHintCooldownDisplay();
+    }
 }
 function getHintCooldownText() {
     if (hintcount > 0) {
@@ -1401,7 +1428,7 @@ function getHintCooldownText() {
     }
 
     if (settings.hints.cooldown.cooldowntype === "time") {
-        return `${cooldown.seconds} sec${cooldown.seconds === 1 ? "" : "s"}`;
+        return `${cooldowntime} sec${cooldowntime === 1 ? "" : "s"}`;
     }
 	
 	return "Pls hold...";
