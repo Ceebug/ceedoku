@@ -1882,9 +1882,10 @@ hidemainmenu();
 setInterval(saveGame, 1000);
 
 function newGame(nextDifficulty = difficulty) {
+	cooldownmoves = 0;
+	cooldowntime = 0;
+	hintcount = settings.hints.cooldown.startinghints;
 	updateHintCooldownDisplay();
-	cooldownmoves = settings.hints.cooldown.cooldowntime;
-	cooldowntime = settings.hints.cooldown.cooldowntime;
 	localStorage.setItem("difficulty", difficulty);
     runninggame = true
 	finished = false
