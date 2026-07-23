@@ -1116,7 +1116,7 @@ position: relative;
             var(--fade-delay,1000ms) forwards;
 }
 body.light .whatdoievencallthis {
-    filter: brightness(0);
+    filter: brightness(0.1);
 }
     
         .control-card {
