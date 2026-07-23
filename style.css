@@ -724,6 +724,9 @@ position: relative;
           overflow: hidden;
           touch-action: manipulation;
         }
+		body.light .board {
+			background: #9da6b1 !important
+		}
     
         .cell {
           position: relative;
