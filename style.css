@@ -14,6 +14,10 @@
     but it ain't no lie,
     bugs go bye bye bye.
 --------------------------- */
+#hintButton:disabled {
+	background-color: var(--disabledbox) !important;
+	cursor: not-allowed !important
+}
 .hint-wrap {
 	max-height: 44px
 }
