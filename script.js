@@ -123,8 +123,7 @@ const isElectron = !!window.electronAPI;
 
 if ("vibrate" in navigator) {
     vibrate = function (duration = 10) {
-        if (typeof isElectron !== "undefined" && isElectron) return;
-        if (!isTouchDevice()) return;
+        if (typeof isTouchDevice !== "function" || !isTouchDevice()) return;
         if (!settings.haptics) return;
 
         navigator.vibrate(duration);
