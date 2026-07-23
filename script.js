@@ -428,7 +428,7 @@ winHapticsToggle.addEventListener("change", () => {
 });
 hintsToggle.addEventListener("change", () => {
 	settings.hints.enabled = hintsToggle.checked;
-
+	testHintButton();
 	if (!settings.hints.enabled) {
         settings.hints.cooldown.enabled = false;
 	}
@@ -1520,9 +1520,10 @@ function getHintCooldownText() {
         return `${cooldowntime} sec${cooldowntime === 1 ? "" : "s"}`;
     }
 	
-	return "Pls hold...";
+	return "It broke?!";
 }
 function updateHintCooldownDisplay() {
+	testHintButton();
     if (!settings.hints.enabled) {
         hintcooldowndisplay.textContent = "Disabled";
         return;
