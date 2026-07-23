@@ -1446,7 +1446,7 @@ function hint() {
 		  canusecurrenthintsystem = true;
 		  cooldowntypetouse = settings.hints.cooldown.cooldowntype
           starthintcooldown();
-		  savegame();
+		  saveGame();
       }
       updateHintCooldownDisplay();
   }
